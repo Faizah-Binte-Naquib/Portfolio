@@ -66,7 +66,17 @@ npx serve
 
 ## 📝 Customization
 
+### Adding Your Profile Image
+
+1. Add your profile photo to `assets/images/profile.jpg`
+   - Recommended size: 400x400px or larger (square)
+   - Formats: JPG, PNG, or WebP
+   - The image will automatically display when added
+   - If no image is found, a placeholder icon will be shown
+
 ### Updating Repository Information
+
+**See `REPOSITORIES.md` for detailed instructions!**
 
 Edit the `featuredRepos` array in `script.js` to update repository details:
 
@@ -108,6 +118,12 @@ Update `index.html` to modify any section content, including:
 - Experience entries
 - Education details
 - Publications
+
+### Adding a Favicon
+
+1. Create or download a favicon (`.ico` or `.png` file)
+2. Place it in the root directory as `favicon.ico`
+3. The favicon will automatically appear in browser tabs
 
 ## 📄 License
 

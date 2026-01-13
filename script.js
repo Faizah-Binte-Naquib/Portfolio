@@ -35,86 +35,63 @@ window.addEventListener('scroll', () => {
 });
 
 // Featured Repositories Data
+// TODO: Replace these with your actual GitHub repositories
+// Visit https://github.com/Faizah-Binte-Naquib?tab=repositories to see your repos
+// For each repo, add an object with: name, description, tech (array), achievements (array), link, icon (Font Awesome class)
+
 const featuredRepos = [
+    // Example structure - replace with your real repositories:
+    // {
+    //     name: "Repository Name",
+    //     description: "Brief description of what the project does and its purpose.",
+    //     tech: ["Python", "PyTorch", "OpenCV"],
+    //     achievements: [
+    //         "Achievement or key feature 1",
+    //         "Achievement or key feature 2",
+    //         "Achievement or key feature 3"
+    //     ],
+    //     link: "https://github.com/Faizah-Binte-Naquib/repo-name",
+    //     icon: "fas fa-icon-name" // See https://fontawesome.com/icons for options
+    // },
+    
+    // Placeholder - remove this and add your real repos below
     {
-        name: "OCR Optimization Framework",
-        description: "Research project optimizing OCR performance through black-box approximation on full-resolution text images. This work reduced OCR query calls by 95% and improved Word Error Rate by 30.31%.",
-        tech: ["Python", "PyTorch", "OpenCV", "Computer Vision", "OCR"],
+        name: "Your Repository Name",
+        description: "Add your actual repositories from GitHub. Look for well-documented, interesting projects that showcase your skills.",
+        tech: ["Tech Stack"],
         achievements: [
-            "Reduced OCR query calls by 95% through bounding-box dependency reduction",
-            "Improved Word Error Rate by 30.31% compared to prior methods",
-            "Addressed resolution variability in large-scale OCR systems",
-            "Intuit-funded research project"
+            "Key achievement or feature",
+            "Another notable aspect"
         ],
         link: "https://github.com/Faizah-Binte-Naquib",
-        icon: "fas fa-eye"
-    },
-    {
-        name: "Finger Vein Biometric System",
-        description: "Biometric authentication pipeline combining vein extraction using Modified Maximum Curvature Method (MMCM) with deep learning classification. Achieved 98.87% classification accuracy.",
-        tech: ["Python", "Deep Learning", "Computer Vision", "Biometrics", "OpenCV"],
-        achievements: [
-            "Achieved 98.87% classification accuracy on evaluated datasets",
-            "Designed preprocessing to mitigate shading and deformation",
-            "Published research papers at IEEE conferences",
-            "Won Third Best Paper Award at ICCIT 2020"
-        ],
-        link: "https://github.com/Faizah-Binte-Naquib",
-        icon: "fas fa-fingerprint"
-    },
-    {
-        name: "Autonomous Vehicle Perception Module",
-        description: "Perception module for Autoware-based autonomous systems, including object detection, 3D mapping, and sensor fusion. Optimized for deployment on automotive-grade edge computing hardware.",
-        tech: ["C++", "ROS2", "Autoware", "PyTorch", "LiDAR", "Computer Vision"],
-        achievements: [
-            "Customized modular pipelines for hardware stack",
-            "Trained detection models for pedestrians and vehicles",
-            "Optimized models using quantization and pruning",
-            "Implemented obstructed sensor detection for cameras and LiDAR"
-        ],
-        link: "https://github.com/Faizah-Binte-Naquib",
-        icon: "fas fa-car"
-    },
-    {
-        name: "Healthcare Document OCR Pipeline",
-        description: "OCR pipeline for healthcare document ingestion with LLM-based field extraction. Leveraged GPT-style and LLaMA models with prompt engineering for clinical document understanding.",
-        tech: ["Python", "LLM", "GPT", "LLaMA", "OCR", "NLP", "Prompt Engineering"],
-        achievements: [
-            "Designed and implemented OCR pipelines for healthcare documents",
-            "Leveraged large language models for document understanding",
-            "Applied prompt engineering and one-shot learning",
-            "Improved field extraction accuracy for clinical documents"
-        ],
-        link: "https://github.com/Faizah-Binte-Naquib",
-        icon: "fas fa-file-medical"
-    },
-    {
-        name: "3D Mapping for Autonomous Navigation",
-        description: "Tools and pipelines for creating and maintaining 3D maps for autonomous navigation, including Lanelet2 maps, mesh representations, and point cloud extraction.",
-        tech: ["C++", "ROS2", "Lanelet2", "Point Clouds", "3D Mapping"],
-        achievements: [
-            "Created and maintained 3D maps for autonomous navigation",
-            "Implemented Lanelet2 map generation",
-            "Developed mesh representation and point cloud extraction",
-            "Integrated with Autoware perception stack"
-        ],
-        link: "https://github.com/Faizah-Binte-Naquib",
-        icon: "fas fa-map"
-    },
-    {
-        name: "ML Model Optimization Toolkit",
-        description: "Collection of tools and techniques for optimizing ML models for edge deployment, including quantization, pruning, and profiling utilities for automotive-grade hardware.",
-        tech: ["Python", "PyTorch", "Model Optimization", "Quantization", "Pruning"],
-        achievements: [
-            "Optimized detection models for edge computing hardware",
-            "Implemented quantization and pruning techniques",
-            "Developed profiling utilities for performance analysis",
-            "Reduced model size while maintaining accuracy"
-        ],
-        link: "https://github.com/Faizah-Binte-Naquib",
-        icon: "fas fa-cogs"
+        icon: "fas fa-code"
     }
 ];
+
+// Helper function to fetch repository info from GitHub API (optional)
+// Uncomment and use if you want to automatically fetch repo data
+/*
+async function fetchGitHubRepos() {
+    try {
+        const response = await fetch('https://api.github.com/users/Faizah-Binte-Naquib/repos?sort=updated&per_page=10');
+        const repos = await response.json();
+        
+        // Filter and format repos
+        return repos
+            .filter(repo => !repo.fork && repo.description) // Only non-forked repos with descriptions
+            .map(repo => ({
+                name: repo.name,
+                description: repo.description,
+                link: repo.html_url,
+                stars: repo.stargazers_count,
+                language: repo.language
+            }));
+    } catch (error) {
+        console.error('Error fetching GitHub repos:', error);
+        return [];
+    }
+}
+*/
 
 // Render repositories
 function renderRepositories() {
@@ -144,8 +121,35 @@ function renderRepositories() {
     `).join('');
 }
 
+// Handle profile image
+function loadProfileImage() {
+    const profileImage = document.getElementById('profileImage');
+    const profilePlaceholder = document.getElementById('profilePlaceholder');
+    
+    if (profileImage) {
+        profileImage.onload = function() {
+            profileImage.classList.add('show');
+            if (profilePlaceholder) {
+                profilePlaceholder.classList.add('hidden');
+            }
+        };
+        
+        profileImage.onerror = function() {
+            // Image failed to load, keep placeholder visible
+            if (profilePlaceholder) {
+                profilePlaceholder.classList.remove('hidden');
+            }
+        };
+        
+        // Try to load the image
+        const img = new Image();
+        img.src = profileImage.src;
+    }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+    loadProfileImage();
     renderRepositories();
 });
 

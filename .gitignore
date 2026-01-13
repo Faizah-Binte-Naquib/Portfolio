@@ -17,3 +17,8 @@ npm-debug.log*
 # Temporary files
 *.tmp
 *.temp
+
+# Keep assets directory structure
+!assets/
+!assets/images/
+!assets/images/.gitkeep

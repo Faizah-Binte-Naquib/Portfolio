@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faizah Binte Naquib - Machine Learning Engineer</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,25 +29,39 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <h1 class="name">Faizah Binte Naquib</h1>
-                <p class="title">Machine Learning Engineer</p>
-                <div class="contact-info">
-                    <a href="tel:+17807101627" class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>(+1) 780-710-1627</span>
-                    </a>
-                    <a href="mailto:faizahbintenaquib@gmail.com" class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>faizahbintenaquib@gmail.com</span>
-                    </a>
-                    <a href="https://github.com/Faizah-Binte-Naquib" target="_blank" class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/fbnaquib-a07932174/" target="_blank" class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
+                <div class="profile-section">
+                    <div class="profile-image-wrapper">
+                        <img src="assets/images/profile.jpg" alt="Faizah Binte Naquib" class="profile-image" id="profileImage">
+                        <div class="profile-placeholder" id="profilePlaceholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="header-text">
+                        <h1 class="name">Faizah Binte Naquib</h1>
+                        <p class="title">
+                            <i class="fas fa-brain"></i>
+                            Machine Learning Engineer
+                        </p>
+                        <p class="tagline">Building intelligent systems that see, understand, and navigate the world</p>
+                        <div class="contact-info">
+                            <a href="tel:+17807101627" class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>(+1) 780-710-1627</span>
+                            </a>
+                            <a href="mailto:faizahbintenaquib@gmail.com" class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>faizahbintenaquib@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/Faizah-Binte-Naquib" target="_blank" class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/fbnaquib-a07932174/" target="_blank" class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,19 +73,44 @@
             <!-- Summary Section -->
             <section id="summary" class="section">
                 <h2 class="section-title">
-                    <i class="fas fa-user"></i>
-                    Professional Summary
+                    <i class="fas fa-user-circle"></i>
+                    About Me
                 </h2>
                 <div class="summary-content">
-                    <p>Machine learning engineer with diverse experience in computer vision, including object detection, OCR pipelines, image preprocessing, and 3D spatial reasoning. Experienced across the ML lifecycle, from dataset preparation and model development to deployment and inference on edge systems. Skilled at integrating models into production systems and applying ML techniques to real-world problems in robotics and autonomous platforms.</p>
+                    <div class="summary-text">
+                        <p>Machine learning engineer with diverse experience in computer vision, including object detection, OCR pipelines, image preprocessing, and 3D spatial reasoning. Experienced across the ML lifecycle, from dataset preparation and model development to deployment and inference on edge systems. Skilled at integrating models into production systems and applying ML techniques to real-world problems in robotics and autonomous platforms.</p>
+                    </div>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div class="stat-content">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <div class="stat-content">
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div class="stat-content">
+                                <span class="stat-number">2</span>
+                                <span class="stat-label">Publications</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Skills Section -->
             <section id="skills" class="section">
                 <h2 class="section-title">
-                    <i class="fas fa-code"></i>
-                    Skills
+                    <i class="fas fa-tools"></i>
+                    Skills & Technologies
                 </h2>
                 <div class="skills-grid">
                     <div class="skill-category">
@@ -131,7 +171,7 @@
             <section id="experience" class="section">
                 <h2 class="section-title">
                     <i class="fas fa-briefcase"></i>
-                    Industry Experience
+                    Professional Experience
                 </h2>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -295,12 +335,23 @@
             <section id="repositories" class="section">
                 <h2 class="section-title">
                     <i class="fab fa-github"></i>
-                    Featured Repositories
+                    Featured Projects
                 </h2>
-                <p class="section-intro">Highlighted projects showcasing my work in machine learning, computer vision, and software engineering.</p>
+                <p class="section-intro">
+                    <i class="fas fa-star"></i>
+                    Highlighted projects from my GitHub showcasing my work in machine learning, computer vision, and software engineering. Each project demonstrates real-world problem-solving and technical expertise.
+                </p>
                 
                 <div class="repos-grid">
                     <!-- Repository cards will be populated by JavaScript -->
+                </div>
+                
+                <div class="view-all-repos">
+                    <a href="https://github.com/Faizah-Binte-Naquib?tab=repositories" target="_blank" class="view-all-btn">
+                        <i class="fab fa-github"></i>
+                        View All Repositories on GitHub
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </section>
 
