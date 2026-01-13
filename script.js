@@ -148,8 +148,18 @@ async function fetchGitHubRepos() {
 // Render repositories
 function renderRepositories() {
     const reposGrid = document.querySelector('.repos-grid');
-    if (!reposGrid) return;
+    if (!reposGrid) {
+        console.error('Repository grid not found!');
+        return;
+    }
 
+    if (!featuredRepos || featuredRepos.length === 0) {
+        console.warn('No featured repositories to display');
+        reposGrid.innerHTML = '<p>No repositories to display.</p>';
+        return;
+    }
+
+    console.log(`Rendering ${featuredRepos.length} repositories`);
     reposGrid.innerHTML = featuredRepos.map(repo => `
         <div class="repo-card">
             <div class="repo-header">
@@ -229,5 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 });
- 
+
+ 
  
