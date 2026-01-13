@@ -40,31 +40,83 @@ window.addEventListener('scroll', () => {
 // For each repo, add an object with: name, description, tech (array), achievements (array), link, icon (Font Awesome class)
 
 const featuredRepos = [
-    // Example structure - replace with your real repositories:
-    // {
-    //     name: "Repository Name",
-    //     description: "Brief description of what the project does and its purpose.",
-    //     tech: ["Python", "PyTorch", "OpenCV"],
-    //     achievements: [
-    //         "Achievement or key feature 1",
-    //         "Achievement or key feature 2",
-    //         "Achievement or key feature 3"
-    //     ],
-    //     link: "https://github.com/Faizah-Binte-Naquib/repo-name",
-    //     icon: "fas fa-icon-name" // See https://fontawesome.com/icons for options
-    // },
-    
-    // Placeholder - remove this and add your real repos below
     {
-        name: "Your Repository Name",
-        description: "Add your actual repositories from GitHub. Look for well-documented, interesting projects that showcase your skills.",
-        tech: ["Tech Stack"],
+        name: "OCR Optimization Framework",
+        description: "End-to-end framework for OCR preprocessing that eliminates bounding-box annotations. Utilizes a transformer-based approximator to improve Word Error Rate by up to 0.44 and reduce OCR query calls by up to 98.14%, achieving performance on par with Google Vision API.",
+        tech: ["Python", "PyTorch", "Transformers", "Computer Vision", "OCR"],
         achievements: [
-            "Key achievement or feature",
-            "Another notable aspect"
+            "Reduced OCR query calls by up to 98.14% through efficient preprocessing",
+            "Improved Word Error Rate by up to 0.44 compared to baseline methods",
+            "Eliminated dependency on bounding-box annotations",
+            "Research project aligned with M.Sc. thesis work"
         ],
-        link: "https://github.com/Faizah-Binte-Naquib",
-        icon: "fas fa-code"
+        link: "https://github.com/Faizah-Binte-Naquib/OPTIMIZING-OCR-PERFORMANCE-WITH-AN-EFFICIENT-BLACK-BOX-APPROXIMATION-FRAMEWORK",
+        icon: "fas fa-eye"
+    },
+    {
+        name: "Manga Reading Website",
+        description: "Full-stack web platform for exploring, reading, rating, and managing favorite manga. Features user authentication, personalized libraries, reading progress tracking, and detailed manga information with summaries, genres, and ratings.",
+        tech: ["JavaScript", "React", "Node.js", "MongoDB", "Full-Stack"],
+        achievements: [
+            "Built complete full-stack application with user authentication",
+            "Implemented personalized library and reading progress tracking",
+            "Created intuitive UI/UX for manga browsing and discovery",
+            "Demonstrates modern web development practices"
+        ],
+        link: "https://github.com/Faizah-Binte-Naquib/Manga-Reading-Website",
+        icon: "fas fa-book-open"
+    },
+    {
+        name: "Docker Compose Project",
+        description: "Full-stack application with React frontend, Flask backend, and MySQL database, containerized with Docker Compose. Features a form for user information input with real-time table updates, demonstrating modern DevOps practices.",
+        tech: ["React", "Flask", "MySQL", "Docker", "Docker Compose", "DevOps"],
+        achievements: [
+            "Containerized full-stack application with Docker",
+            "Implemented microservices architecture with Docker Compose",
+            "Demonstrates modern DevOps and containerization skills",
+            "Full-stack integration with React, Flask, and MySQL"
+        ],
+        link: "https://github.com/Faizah-Binte-Naquib/Docker-Compose-Project",
+        icon: "fas fa-docker"
+    },
+    {
+        name: "Online Shopping Platform",
+        description: "E-commerce web application for seamless clothing shopping experience. Features user accounts, shopping cart, secure checkout, and admin panel for product and order management. Demonstrates understanding of business logic and e-commerce workflows.",
+        tech: ["JavaScript", "React", "Node.js", "E-commerce", "Full-Stack"],
+        achievements: [
+            "Built complete e-commerce platform with user and admin roles",
+            "Implemented shopping cart and secure checkout functionality",
+            "Created admin dashboard for product and order management",
+            "Demonstrates full-stack development and business logic implementation"
+        ],
+        link: "https://github.com/Faizah-Binte-Naquib/Online-Shopping",
+        icon: "fas fa-shopping-cart"
+    },
+    {
+        name: "Pokedex Web App",
+        description: "React-based web application for exploring Pokémon data interactively. Fetches data from PokeAPI to display detailed information including species, abilities, and types. Features search functionality and intuitive UI design.",
+        tech: ["React", "JavaScript", "REST API", "Frontend"],
+        achievements: [
+            "Built interactive React application with API integration",
+            "Implemented search and filtering functionality",
+            "Created engaging UI/UX with modern React patterns",
+            "Demonstrates frontend development and API consumption skills"
+        ],
+        link: "https://github.com/Faizah-Binte-Naquib/Pokedex",
+        icon: "fas fa-mobile-alt"
+    },
+    {
+        name: "My Anime Companion",
+        description: "Full-stack website for tracking anime watch lists and accessing detailed anime information. Features user accounts, personalized watch lists, and comprehensive anime database with search and filtering capabilities.",
+        tech: ["PHP", "MySQL", "JavaScript", "Full-Stack"],
+        achievements: [
+            "Built complete content management system for anime tracking",
+            "Implemented user authentication and personalized watch lists",
+            "Created search and filtering functionality",
+            "Demonstrates full-stack development with PHP and MySQL"
+        ],
+        link: "https://github.com/Faizah-Binte-Naquib/My-Anime-Companion",
+        icon: "fas fa-tv"
     }
 ];
 
