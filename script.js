@@ -1,4 +1,4 @@
-// Smooth scrolling for navigation links
+﻿// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -94,7 +94,7 @@ const featuredRepos = [
     },
     {
         name: "Pokedex Web App",
-        description: "React-based web application for exploring Pokémon data interactively. Fetches data from PokeAPI to display detailed information including species, abilities, and types. Features search functionality and intuitive UI design.",
+        description: "React-based web application for exploring PokÃ©mon data interactively. Fetches data from PokeAPI to display detailed information including species, abilities, and types. Features search functionality and intuitive UI design.",
         tech: ["React", "JavaScript", "REST API", "Frontend"],
         achievements: [
             "Built interactive React application with API integration",
@@ -242,4 +242,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
  
  
-
