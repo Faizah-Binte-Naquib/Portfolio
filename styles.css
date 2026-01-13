@@ -172,6 +172,7 @@ body {
 .header-text {
     flex: 1;
     min-width: 300px;
+    text-align: left;
 }
 
 .name {
@@ -180,6 +181,7 @@ body {
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
     color: var(--text-color);
+    text-align: left;
 }
 
 .title {
@@ -190,7 +192,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .title i {
@@ -203,11 +205,12 @@ body {
     margin-bottom: 2rem;
     opacity: 0.9;
     font-style: italic;
+    text-align: left;
 }
 
 .contact-info {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.5rem;
     flex-wrap: wrap;
 }
