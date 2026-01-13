@@ -11,11 +11,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
 // Highlight active section in navigation
 const sections = document.querySelectorAll('.section');
 const navLinks = document.querySelectorAll('.nav-links a');
-
 window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
@@ -25,7 +23,6 @@ window.addEventListener('scroll', () => {
             current = section.getAttribute('id');
         }
     });
-
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
@@ -33,12 +30,10 @@ window.addEventListener('scroll', () => {
         }
     });
 });
-
 // Featured Repositories Data
 // TODO: Replace these with your actual GitHub repositories
 // Visit https://github.com/Faizah-Binte-Naquib?tab=repositories to see your repos
 // For each repo, add an object with: name, description, tech (array), achievements (array), link, icon (Font Awesome class)
-
 const featuredRepos = [
     {
         name: "OCR Optimization Framework",
@@ -119,7 +114,6 @@ const featuredRepos = [
         icon: "fas fa-tv"
     }
 ];
-
 // Helper function to fetch repository info from GitHub API (optional)
 // Uncomment and use if you want to automatically fetch repo data
 /*
@@ -127,7 +121,6 @@ async function fetchGitHubRepos() {
     try {
         const response = await fetch('https://api.github.com/users/Faizah-Binte-Naquib/repos?sort=updated&per_page=10');
         const repos = await response.json();
-        
         // Filter and format repos
         return repos
             .filter(repo => !repo.fork && repo.description) // Only non-forked repos with descriptions
@@ -144,7 +137,6 @@ async function fetchGitHubRepos() {
     }
 }
 */
-
 // Render repositories
 function renderRepositories() {
     const reposGrid = document.querySelector('.repos-grid');
@@ -152,13 +144,11 @@ function renderRepositories() {
         console.error('Repository grid not found!');
         return;
     }
-
     if (!featuredRepos || featuredRepos.length === 0) {
         console.warn('No featured repositories to display');
         reposGrid.innerHTML = '<p>No repositories to display.</p>';
         return;
     }
-
     console.log(`Rendering ${featuredRepos.length} repositories`);
     reposGrid.innerHTML = featuredRepos.map(repo => `
         <div class="repo-card">
@@ -182,12 +172,10 @@ function renderRepositories() {
         </div>
     `).join('');
 }
-
 // Handle profile image
 function loadProfileImage() {
     const profileImage = document.getElementById('profileImage');
     const profilePlaceholder = document.getElementById('profilePlaceholder');
-    
     if (profileImage) {
         profileImage.onload = function() {
             profileImage.classList.add('show');
@@ -195,32 +183,27 @@ function loadProfileImage() {
                 profilePlaceholder.classList.add('hidden');
             }
         };
-        
         profileImage.onerror = function() {
             // Image failed to load, keep placeholder visible
             if (profilePlaceholder) {
                 profilePlaceholder.classList.remove('hidden');
             }
         };
-        
         // Try to load the image
         const img = new Image();
         img.src = profileImage.src;
     }
 }
-
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadProfileImage();
     renderRepositories();
 });
-
 // Add fade-in animation on scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 };
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -229,7 +212,6 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
-
 // Observe all sections
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.section').forEach(section => {
@@ -239,6 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 });
+ 
+ 
 
- 
- 
