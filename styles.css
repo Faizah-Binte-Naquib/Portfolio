@@ -852,6 +852,35 @@ body {
     line-height: 1.7;
 }
 
+.award-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.award-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.award-link i {
+    font-size: 0.9rem;
+}
+
+.inline-link {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.inline-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
 /* Articles Section */
 .articles-grid {
     display: grid;
