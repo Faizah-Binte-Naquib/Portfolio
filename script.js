@@ -89,7 +89,7 @@ const featuredRepos = [
     },
     {
         name: "Pokedex Web App",
-        description: "React-based web application for exploring PokÃƒÂ©mon data interactively. Fetches data from PokeAPI to display detailed information including species, abilities, and types. Features search functionality and intuitive UI design.",
+        description: "React-based web application for exploring Pokemon data interactively. Fetches data from PokeAPI to display detailed information including species, abilities, and types. Features search functionality and intuitive UI design.",
         tech: ["React", "JavaScript", "REST API", "Frontend"],
         achievements: [
             "Built interactive React application with API integration",
