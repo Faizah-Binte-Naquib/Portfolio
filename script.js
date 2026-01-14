@@ -198,6 +198,10 @@ function loadProfileImage() {
 document.addEventListener('DOMContentLoaded', () => {
     loadProfileImage();
     renderRepositories();
+    initCodeRain();
+    rotateFunFacts();
+    addEmojiReactions();
+    addEasterEgg();
 });
 // Add fade-in animation on scroll
 const observerOptions = {
@@ -221,3 +225,180 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 });
+
+// Code Rain Effect
+function initCodeRain() {
+    const canvas = document.getElementById('codeRain');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    
+    for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100;
+    }
+    
+    function draw() {
+        ctx.fillStyle = 'rgba(26, 26, 26, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'rgba(167, 139, 250, 0.3)';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            const x = i * fontSize;
+            const y = drops[i] * fontSize;
+            
+            ctx.fillText(text, x, y);
+            
+            if (y > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+    
+    setInterval(draw, 50);
+    
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// Fun Facts Rotation
+const funFacts = [
+    "Did you know? I once debugged a model for 3 days only to find a typo in a variable name 😅",
+    "Fun fact: I've read over 1000+ manga! 📚",
+    "Random tidbit: I've watched One Piece (1000+ episodes) three times 🏴‍☠️",
+    "Did you know? I once built a full-stack app in 24 hours for a hackathon ⚡",
+    "Fun fact: My first programming language was C 💜",
+    "Random tidbit: I knit in my spare time 🧶",
+    "Did you know? I can draw! 🎨"
+];
+
+let currentFactIndex = 0;
+
+function rotateFunFacts() {
+    const funFactText = document.getElementById('funFactText');
+    if (!funFactText) return;
+    
+    // Add transition style
+    funFactText.style.transition = 'opacity 0.3s ease';
+    
+    setInterval(() => {
+        funFactText.style.opacity = '0';
+        setTimeout(() => {
+            currentFactIndex = (currentFactIndex + 1) % funFacts.length;
+            funFactText.textContent = funFacts[currentFactIndex];
+            funFactText.style.opacity = '1';
+        }, 300);
+    }, 8000); // Change every 8 seconds
+}
+
+// Emoji Reactions on Hover
+function addEmojiReactions() {
+    const hoverableElements = document.querySelectorAll('.section-title, .repo-card, .article-card, .award-item, .company, .institution');
+    
+    const emojis = ['✨', '🌟', '💫', '⭐', '🎯', '🚀', '💡', '🔥', '🎨', '⚡'];
+    
+    hoverableElements.forEach(element => {
+        let emojiTimeout;
+        
+        element.addEventListener('mouseenter', () => {
+            emojiTimeout = setInterval(() => {
+                const emoji = document.createElement('div');
+                emoji.className = 'emoji-reaction';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                const rect = element.getBoundingClientRect();
+                emoji.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                emoji.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                
+                document.body.appendChild(emoji);
+                
+                setTimeout(() => {
+                    emoji.remove();
+                }, 1500);
+            }, 400);
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            clearInterval(emojiTimeout);
+        });
+    });
+}
+
+// Easter Egg on Profile Click
+function addEasterEgg() {
+    const profileImage = document.getElementById('profileImage');
+    const profilePlaceholder = document.getElementById('profilePlaceholder');
+    const profileName = document.getElementById('profileName');
+    let clickCount = 0;
+    let clickTimeout;
+    
+    const easterEggHandler = () => {
+        clickCount++;
+        clearTimeout(clickTimeout);
+        
+        if (clickCount === 5) {
+            // Easter egg triggered!
+            const easterEggMessages = [
+                "🎉 You found the easter egg!",
+                "🌟 Secret unlocked!",
+                "✨ You're persistent!",
+                "🚀 Hidden feature activated!",
+                "💫 You're awesome!"
+            ];
+            
+            const message = easterEggMessages[Math.floor(Math.random() * easterEggMessages.length)];
+            
+            if (profileName) {
+                profileName.classList.add('easter-egg-active');
+                setTimeout(() => {
+                    profileName.classList.remove('easter-egg-active');
+                }, 600);
+            }
+            
+            // Show confetti or celebration
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-reaction';
+                    emoji.textContent = ['🎉', '✨', '🌟', '🎊', '⭐'][Math.floor(Math.random() * 5)];
+                    emoji.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 200) + 'px';
+                    emoji.style.top = (window.innerHeight / 2 + (Math.random() - 0.5) * 200) + 'px';
+                    emoji.style.fontSize = '2rem';
+                    document.body.appendChild(emoji);
+                    
+                    setTimeout(() => emoji.remove(), 2000);
+                }, i * 50);
+            }
+            
+            clickCount = 0;
+        }
+        
+        clickTimeout = setTimeout(() => {
+            clickCount = 0;
+        }, 1000);
+    };
+    
+    if (profileImage) {
+        profileImage.addEventListener('click', easterEggHandler);
+    }
+    if (profilePlaceholder) {
+        profilePlaceholder.addEventListener('click', easterEggHandler);
+    }
+    if (profileName) {
+        profileName.addEventListener('click', easterEggHandler);
+    }
+}
+
+

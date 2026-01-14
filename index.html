@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Code Rain Effect -->
+    <canvas id="codeRain" class="code-rain"></canvas>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -32,18 +35,36 @@
             <div class="header-content">
                 <div class="profile-section">
                     <div class="profile-image-wrapper">
-                        <img src="assets/images/profile.jpg" alt="Faizah Binte Naquib" class="profile-image" id="profileImage">
-                        <div class="profile-placeholder" id="profilePlaceholder">
-                            <i class="fas fa-user"></i>
+                        <div class="profile-flip-card">
+                            <div class="profile-flip-front">
+                                <img src="assets/images/profile.jpg" alt="Faizah Binte Naquib" class="profile-image" id="profileImage">
+                                <div class="profile-placeholder" id="profilePlaceholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="profile-flip-back">
+                                <div class="flip-back-content">
+                                    <i class="fas fa-code"></i>
+                                    <div class="flip-code">
+                                        <span class="code-line">import ml_engineer</span>
+                                        <span class="code-line">from faizah import *</span>
+                                        <span class="code-line">print("Hello! 👋")</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="header-text">
-                        <h1 class="name">Faizah Binte Naquib</h1>
+                        <h1 class="name" id="profileName">Faizah Binte Naquib</h1>
                         <p class="title">
                             <i class="fas fa-brain"></i>
                             Machine Learning Engineer
                         </p>
                         <p class="tagline">Building intelligent systems that see, understand, and navigate the world</p>
+                        <div class="fun-facts" id="funFacts">
+                            <i class="fas fa-lightbulb"></i>
+                            <span class="fun-fact-text" id="funFactText">Did you know? I once debugged a model for 3 days only to find a typo in a variable name 😅</span>
+                        </div>
                         <div class="contact-info">
                             <a href="tel:+17807101627" class="contact-item">
                                 <i class="fas fa-phone"></i>
@@ -79,7 +100,25 @@
                 </h2>
                 <div class="summary-content">
                     <div class="summary-text">
-                        <p>Machine learning engineer with diverse experience in computer vision, including object detection, OCR pipelines, image preprocessing, and 3D spatial reasoning. Experienced across the ML lifecycle, from dataset preparation and model development to deployment and inference on edge systems. Skilled at integrating models into production systems and applying ML techniques to real-world problems in robotics and autonomous platforms.</p>
+                        <div class="summary-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-eye"></i>
+                                <span>Computer Vision & OCR</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-robot"></i>
+                                <span>Robotics & Autonomous Systems</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-brain"></i>
+                                <span>ML Lifecycle Expertise</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-server"></i>
+                                <span>Edge Deployment</span>
+                            </div>
+                        </div>
+                        <p class="summary-paragraph">Machine learning engineer with diverse experience in computer vision, including object detection, OCR pipelines, image preprocessing, and 3D spatial reasoning. Experienced across the ML lifecycle, from dataset preparation and model development to deployment and inference on edge systems.</p>
                     </div>
                     <div class="quick-stats">
                         <div class="stat-item">
@@ -115,54 +154,63 @@
                 </h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3 class="skill-title">Programming</h3>
+                        <h3 class="skill-title">Languages</h3>
                         <div class="skill-tags">
                             <span class="tag">Python</span>
                             <span class="tag">C++</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">Linux</span>
-                            <span class="tag">Git</span>
-                            <span class="tag">CI/CD</span>
-                            <span class="tag">REST APIs</span>
-                            <span class="tag">Profiling</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">SQL</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3 class="skill-title">Frameworks</h3>
+                        <h3 class="skill-title">Full-stack / Web</h3>
+                        <div class="skill-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">RESTful APIs</span>
+                            <span class="tag">Full-stack Development</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-title">ML / CV</h3>
                         <div class="skill-tags">
                             <span class="tag">PyTorch</span>
                             <span class="tag">TensorFlow</span>
-                            <span class="tag">Hugging Face</span>
                             <span class="tag">OpenCV</span>
-                            <span class="tag">Scikit-learn</span>
-                            <span class="tag">Pandas</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-title">Computer Vision</h3>
-                        <div class="skill-tags">
                             <span class="tag">OCR pipelines</span>
-                            <span class="tag">Object detection</span>
-                            <span class="tag">Image preprocessing</span>
-                            <span class="tag">GenAI</span>
+                            <span class="tag">Object Detection</span>
+                            <span class="tag">Image Processing</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3 class="skill-title">Robotics</h3>
+                        <h3 class="skill-title">NLP / LLMs</h3>
+                        <div class="skill-tags">
+                            <span class="tag">BERT-based models</span>
+                            <span class="tag">GPT-style models</span>
+                            <span class="tag">LLaMA</span>
+                            <span class="tag">Prompt Engineering</span>
+                            <span class="tag">Few-/One-shot Learning</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-title">Robotics / AV</h3>
                         <div class="skill-tags">
                             <span class="tag">ROS2</span>
                             <span class="tag">Autoware</span>
-                            <span class="tag">LiDAR-camera fusion</span>
+                            <span class="tag">Perception Pipelines</span>
+                            <span class="tag">LiDAR–Camera Fusion</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3 class="skill-title">NLP</h3>
+                        <h3 class="skill-title">Systems / Tools</h3>
                         <div class="skill-tags">
-                            <span class="tag">BERT-based models</span>
-                            <span class="tag">GPT-3.0</span>
-                            <span class="tag">LLaMA</span>
-                            <span class="tag">Prompt engineering</span>
-                            <span class="tag">Few-shot/One-shot learning</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">CI/CD</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">Model Profiling</span>
+                            <span class="tag">Unit / integration testing</span>
                         </div>
                     </div>
                 </div>
@@ -184,11 +232,11 @@
                                 <span class="date">Aug 2025 - Present</span>
                             </div>
                             <ul class="experience-list">
-                                <li>Responsible for perception module in Autoware, customizing modular pipelines for our hardware stack and training models for robustness under operational conditions.</li>
-                                <li>Created and maintained 3D maps for autonomous navigation, including Lanelet2 maps, mesh representations, and point cloud extraction from meshes.</li>
-                                <li>Led automatic emergency braking project: trained and maintained detection models for pedestrians and vehicles, selecting datasets and determining retraining schedules.</li>
-                                <li>Optimized detection models for deployment on automotive-grade edge computing hardware using quantization and pruning techniques.</li>
-                                <li>Implemented obstructed sensor detection for cameras and LiDAR, triggering alerts when perception inputs were degraded.</li>
+                                <li><i class="fas fa-cog"></i> Responsible for perception module in Autoware, customizing modular pipelines for our hardware stack and training models for robustness under operational conditions.</li>
+                                <li><i class="fas fa-map"></i> Created and maintained 3D maps for autonomous navigation, including Lanelet2 maps, mesh representations, and point cloud extraction from meshes.</li>
+                                <li><i class="fas fa-car-side"></i> Led automatic emergency braking project: trained and maintained detection models for pedestrians and vehicles, selecting datasets and determining retraining schedules.</li>
+                                <li><i class="fas fa-microchip"></i> Optimized detection models for deployment on automotive-grade edge computing hardware using quantization and pruning techniques.</li>
+                                <li><i class="fas fa-exclamation-triangle"></i> Implemented obstructed sensor detection for cameras and LiDAR, triggering alerts when perception inputs were degraded.</li>
                             </ul>
                         </div>
                     </div>
@@ -202,8 +250,8 @@
                                 <span class="date">May 2025 - Aug 2025</span>
                             </div>
                             <ul class="experience-list">
-                                <li>Designed and implemented OCR pipelines for healthcare document ingestion.</li>
-                                <li>Leveraged large language models (e.g., GPT-style and LLaMA-based models) with prompt engineering and one-shot learning to refine document understanding and improve field extraction accuracy for clinical documents.</li>
+                                <li><i class="fas fa-file-medical"></i> Designed and implemented OCR pipelines for healthcare document ingestion.</li>
+                                <li><i class="fas fa-language"></i> Leveraged large language models (e.g., GPT-style and LLaMA-based models) with prompt engineering and one-shot learning to refine document understanding and improve field extraction accuracy for clinical documents.</li>
                             </ul>
                         </div>
                     </div>
@@ -217,8 +265,8 @@
                                 <span class="date">May 2025 - Aug 2025</span>
                             </div>
                             <ul class="experience-list">
-                                <li>Advised startups on translating business requirements into ML solutions and validating prototypes.</li>
-                                <li>Scoped and documented ML system designs and evaluation plans for production handoff.</li>
+                                <li><i class="fas fa-lightbulb"></i> Advised startups on translating business requirements into ML solutions and validating prototypes.</li>
+                                <li><i class="fas fa-clipboard-check"></i> Scoped and documented ML system designs and evaluation plans for production handoff.</li>
                             </ul>
                         </div>
                     </div>
@@ -232,8 +280,10 @@
                                 <span class="date">Mar 2022 - Aug 2022</span>
                             </div>
                             <ul class="experience-list">
-                                <li>Implemented secure third-party authentication flows and migrated legacy frontend components to React.</li>
-                                <li>Improved reliability through systematic debugging and test coverage.</li>
+                                <li><i class="fas fa-code"></i> Developed full-stack web application features using React, JavaScript/TypeScript, and REST APIs, integrating frontend components with AWS-hosted backend services.</li>
+                                <li><i class="fas fa-shield-alt"></i> Implemented secure third-party authentication flows and migrated legacy frontend components to modern React architecture.</li>
+                                <li><i class="fas fa-database"></i> Optimized database queries and API integrations, working with SQL databases and cloud infrastructure to improve application performance and reliability.</li>
+                                <li><i class="fas fa-bug"></i> Enhanced code quality through systematic debugging, comprehensive test coverage, and code reviews.</li>
                             </ul>
                         </div>
                     </div>
@@ -247,8 +297,8 @@
                                 <span class="date">Jul 2021 - Oct 2021</span>
                             </div>
                             <ul class="experience-list">
-                                <li>Developed web applications using React and REST APIs.</li>
-                                <li>Prototyped OCR-based automation for content digitization.</li>
+                                <li><i class="fas fa-laptop-code"></i> Developed web applications using React and REST APIs.</li>
+                                <li><i class="fas fa-magic"></i> Prototyped OCR-based automation for content digitization.</li>
                             </ul>
                         </div>
                     </div>
@@ -268,13 +318,20 @@
                         <span class="date">2022 - 2025</span>
                     </div>
                     <div class="thesis">
-                        <h4 class="thesis-title">Thesis: Optimizing OCR Performance Through Black-Box Approximation on Full-Resolution Text Images</h4>
+                        <h4 class="thesis-title">
+                            <i class="fas fa-book"></i>
+                            Thesis: Optimizing OCR Performance Through Black-Box Approximation on Full-Resolution Text Images
+                        </h4>
                         <ul class="thesis-points">
-                            <li>Conducted <a href="https://www.intuit.com/ca/" target="_blank" class="inline-link">Intuit</a>-funded research to optimize OCR preprocessing.</li>
-                            <li>Reduced OCR query calls by 95% through bounding-box dependency reduction.</li>
-                            <li>Addressed resolution variability in large-scale OCR systems and reduced Word Error Rate by 30.31% compared to prior methods.</li>
+                            <li><i class="fas fa-check-circle"></i> Conducted <a href="https://www.intuit.com/ca/" target="_blank" class="inline-link">Intuit</a>-funded research to optimize OCR preprocessing.</li>
+                            <li><i class="fas fa-check-circle"></i> Reduced OCR query calls by 95% through bounding-box dependency reduction.</li>
+                            <li><i class="fas fa-check-circle"></i> Addressed resolution variability in large-scale OCR systems and reduced Word Error Rate by 30.31% compared to prior methods.</li>
                         </ul>
-                        <p class="advisors"><strong>Advisors:</strong> <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=Nilanjan+Ray+University+of+Alberta" target="_blank" class="inline-link">Dr. Nilanjan Ray</a>, University of Alberta | <a href="https://www.linkedin.com/in/eric-van-oeveren/" target="_blank" class="inline-link">Eric Van Oeveren</a>, Senior Data Scientist, <a href="https://www.intuit.com/ca/" target="_blank" class="inline-link">Intuit</a></p>
+                        <div class="advisors">
+                            <strong><i class="fas fa-user-tie"></i> Advisors:</strong>
+                            <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=Nilanjan+Ray+University+of+Alberta" target="_blank" class="inline-link">Dr. Nilanjan Ray</a>, University of Alberta | 
+                            <a href="https://www.linkedin.com/in/eric-van-oeveren/" target="_blank" class="inline-link">Eric Van Oeveren</a>, Senior Data Scientist, <a href="https://www.intuit.com/ca/" target="_blank" class="inline-link">Intuit</a>
+                        </div>
                     </div>
                 </div>
 
@@ -285,12 +342,18 @@
                         <span class="date">2016 - 2021</span>
                     </div>
                     <div class="thesis">
-                        <h4 class="thesis-title">Thesis: Extraction and Classification of Finger Vein Patterns Using Maximum Curvature and Deep Learning</h4>
+                        <h4 class="thesis-title">
+                            <i class="fas fa-book"></i>
+                            Thesis: Extraction and Classification of Finger Vein Patterns Using Maximum Curvature and Deep Learning
+                        </h4>
                         <ul class="thesis-points">
-                            <li>Built a biometric authentication pipeline combining vein extraction and deep learning.</li>
-                            <li>Designed preprocessing to mitigate shading and deformation, achieving 98.87% classification accuracy on evaluated datasets.</li>
+                            <li><i class="fas fa-check-circle"></i> Built a biometric authentication pipeline combining vein extraction and deep learning.</li>
+                            <li><i class="fas fa-check-circle"></i> Designed preprocessing to mitigate shading and deformation, achieving 98.87% classification accuracy on evaluated datasets.</li>
                         </ul>
-                        <p class="advisors"><strong>Advisors:</strong> <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=Kazi+A+Kalpoma+Ahsanullah" target="_blank" class="inline-link">Dr. Kazi A. Kalpoma</a>, Ahsanullah University of Science and Technology</p>
+                        <div class="advisors">
+                            <strong><i class="fas fa-user-tie"></i> Advisors:</strong>
+                            <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=Kazi+A+Kalpoma+Ahsanullah" target="_blank" class="inline-link">Dr. Kazi A. Kalpoma</a>, Ahsanullah University of Science and Technology
+                        </div>
                     </div>
                 </div>
             </section>

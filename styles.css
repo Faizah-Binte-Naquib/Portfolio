@@ -36,6 +36,8 @@ body {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
 }
 
 /* Global link styles - override default browser blue */
@@ -143,6 +145,68 @@ a:hover {
 .profile-image-wrapper {
     position: relative;
     flex-shrink: 0;
+    perspective: 1000px;
+}
+
+.profile-flip-card {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.profile-image-wrapper:hover .profile-flip-card {
+    transform: rotateY(180deg);
+}
+
+.profile-flip-front,
+.profile-flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-flip-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-xl);
+}
+
+.flip-back-content {
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+
+.flip-back-content i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    opacity: 0.9;
+}
+
+.flip-code {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.code-line {
+    display: block;
+    text-align: left;
+    padding-left: 0.5rem;
+    opacity: 0.95;
 }
 
 .profile-image {
@@ -305,6 +369,48 @@ a:hover {
     margin-bottom: 2rem;
 }
 
+.summary-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(167, 139, 250, 0.1);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.highlight-item:hover {
+    background: rgba(167, 139, 250, 0.15);
+    transform: translateX(5px);
+    border-left-color: var(--accent-color);
+}
+
+.highlight-item i {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.highlight-item span {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.summary-paragraph {
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
 .quick-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -364,6 +470,31 @@ a:hover {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    transform: scaleY(0);
+    transition: var(--transition);
+}
+
+.skill-category:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.skill-category:hover::before {
+    transform: scaleY(1);
 }
 
 .skill-title {
@@ -433,6 +564,30 @@ a:hover {
     padding: 1.5rem;
     border-radius: 8px;
     border-left: 3px solid var(--primary-color);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    transform: scaleY(0);
+    transition: var(--transition);
+}
+
+.timeline-content:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.timeline-content:hover::before {
+    transform: scaleY(1);
 }
 
 .experience-header {
@@ -488,28 +643,62 @@ a:hover {
 }
 
 .experience-list li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
+    padding: 0.75rem 0;
+    padding-left: 2.5rem;
     position: relative;
     color: var(--text-light);
-    line-height: 1.7;
+    line-height: 1.8;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: var(--transition);
 }
 
-.experience-list li::before {
-    content: '▸';
+.experience-list li:hover {
+    color: var(--text-color);
+    transform: translateX(5px);
+}
+
+.experience-list li i {
     position: absolute;
     left: 0;
+    top: 0.75rem;
     color: var(--primary-color);
-    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
 /* Education */
 .education-item {
     margin-bottom: 3rem;
-    padding: 1.5rem;
+    padding: 2rem;
     background: var(--bg-section);
-    border-radius: 8px;
-    border-left: 3px solid var(--primary-color);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.education-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    transform: scaleY(0);
+    transition: var(--transition);
+}
+
+.education-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.education-item:hover::before {
+    transform: scaleY(1);
 }
 
 .education-header {
@@ -561,7 +750,15 @@ a:hover {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.thesis-title i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
 }
 
 .thesis-points {
@@ -571,26 +768,53 @@ a:hover {
 }
 
 .thesis-points li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
+    padding: 0.75rem 0;
+    padding-left: 2rem;
     position: relative;
     color: var(--text-light);
-    line-height: 1.7;
+    line-height: 1.8;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    transition: var(--transition);
 }
 
-.thesis-points li::before {
-    content: '▸';
+.thesis-points li:hover {
+    color: var(--text-color);
+    transform: translateX(5px);
+}
+
+.thesis-points li i {
     position: absolute;
     left: 0;
-    color: var(--primary-color);
-    font-weight: bold;
+    top: 0.75rem;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
 .advisors {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
     color: var(--text-light);
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: 1.8;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.advisors strong {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.advisors i {
+    color: var(--primary-color);
 }
 
 /* Publications */
@@ -601,11 +825,29 @@ a:hover {
     border-radius: 8px;
     border-left: 3px solid var(--primary-color);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.publication-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    transform: scaleY(0);
+    transition: var(--transition);
 }
 
 .publication-item:hover {
     transform: translateX(5px);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
+}
+
+.publication-item:hover::before {
+    transform: scaleY(1);
 }
 
 .publication-header {
@@ -831,11 +1073,29 @@ a:hover {
     border-radius: 8px;
     border-left: 3px solid var(--primary-color);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.award-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    transform: scaleY(0);
+    transition: var(--transition);
 }
 
 .award-item:hover {
     transform: translateX(5px);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
+}
+
+.award-item:hover::before {
+    transform: scaleY(1);
 }
 
 .award-year {
@@ -1176,3 +1436,91 @@ a:hover {
         gap: 1rem;
     }
 }
+
+/* Ensure content is above background effects */
+.container,
+.section {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Code Rain Effect */
+.code-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+/* Fun Facts Section */
+.fun-facts {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    background: rgba(167, 139, 250, 0.1);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    animation: fadeIn 0.8s ease;
+}
+
+.fun-facts i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.fun-fact-text {
+    flex: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Emoji Reactions */
+.emoji-reaction {
+    position: absolute;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: emojiFloat 1.5s ease-out forwards;
+    z-index: 100;
+}
+
+@keyframes emojiFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.8);
+    }
+}
+
+/* Easter Egg Animation */
+.easter-egg-active {
+    animation: easterEgg 0.6s ease;
+}
+
+@keyframes easterEgg {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    50% { transform: scale(1.15) rotate(5deg); }
+    75% { transform: scale(1.1) rotate(-3deg); }
+}
+
