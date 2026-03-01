@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
 </head>
 <body>
     <!-- Code Rain Effect -->
@@ -23,6 +24,7 @@
                 <a href="#education">Education</a>
                 <a href="#publications">Publications</a>
                 <a href="#repositories">Repositories</a>
+                <a href="#demo">Demo</a>
                 <a href="#articles">Articles</a>
                 <a href="#awards">Awards</a>
             </div>
@@ -84,6 +86,24 @@
                             </a>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Demo Call-to-Action -->
+                <div class="demo-cta">
+                    <div class="demo-cta-content">
+                        <div class="demo-cta-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="demo-cta-text">
+                            <h3>Try My Interactive Demo!</h3>
+                            <p>Draw on canvas → OCR extracts text → Llama 3.1 refines it. See my skills in action! 🚀</p>
+                        </div>
+                        <a href="#demo" class="demo-cta-button">
+                            <span>Try Demo</span>
+                            <i class="fas fa-arrow-down"></i>
+                        </a>
+                    </div>
+                    <div class="demo-cta-particles"></div>
                 </div>
             </div>
         </div>
@@ -416,6 +436,81 @@
                         View All Repositories on GitHub
                         <i class="fas fa-arrow-right"></i>
                     </a>
+                </div>
+            </section>
+
+            <!-- OCR & LLM Demo Section -->
+            <section id="demo" class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-magic"></i>
+                    Interactive OCR & LLM Demo
+                </h2>
+                <p class="section-intro">
+                    <i class="fas fa-pen-fancy"></i>
+                    Draw or write anything on the canvas below. This demo showcases OCR text extraction using PaddleOCR (or Tesseract.js as fallback) and text refinement using Llama 3.1 via AWS Lambda.
+                </p>
+                
+                <div class="demo-container">
+                    <div class="demo-panel">
+                        <div class="demo-header">
+                            <h3><i class="fas fa-paint-brush"></i> Drawing Canvas</h3>
+                            <div class="demo-controls">
+                                <button id="clearCanvas" class="demo-btn">
+                                    <i class="fas fa-eraser"></i> Clear
+                                </button>
+                                <button id="processOCR" class="demo-btn demo-btn-primary">
+                                    <i class="fas fa-eye"></i> Extract Text (OCR)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="canvas-wrapper">
+                            <canvas id="drawingCanvas"></canvas>
+                            <div class="canvas-overlay" id="canvasOverlay">
+                                <p>Draw or write here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demo-results">
+                        <div class="result-panel">
+                            <div class="result-header">
+                                <h3><i class="fas fa-file-alt"></i> Extracted Text (OCR)</h3>
+                                <div class="result-status" id="ocrStatus">
+                                    <i class="fas fa-clock"></i> Ready
+                                </div>
+                            </div>
+                            <div class="result-content" id="ocrResult">
+                                <p class="placeholder-text">OCR results will appear here...</p>
+                            </div>
+                        </div>
+
+                        <div class="result-panel">
+                            <div class="result-header">
+                                <h3><i class="fas fa-brain"></i> Refined Text (Llama 3.1)</h3>
+                                <div class="result-status" id="llmStatus">
+                                    <i class="fas fa-clock"></i> Ready
+                                </div>
+                            </div>
+                            <div class="result-content" id="llmResult">
+                                <p class="placeholder-text">Refined text will appear here after OCR...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-info">
+                        <div class="info-card">
+                            <i class="fas fa-info-circle"></i>
+                            <div>
+                                <strong>How it works:</strong>
+                                <ol>
+                                    <li>Draw or write on the canvas using your mouse or touch</li>
+                                    <li>Click "Extract Text (OCR)" to process the image with PaddleOCR (or Tesseract.js fallback)</li>
+                                    <li>The extracted text is automatically refined using Llama 3.1 via AWS Lambda</li>
+                                    <li>View both the raw OCR output and the refined text below</li>
+                                </ol>
+                            </div>
+                        </div>
                 </div>
             </section>
 

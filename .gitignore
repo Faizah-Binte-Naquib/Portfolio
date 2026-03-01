@@ -18,6 +18,10 @@ npm-debug.log*
 *.tmp
 *.temp
 
+# Local AWS credentials (never commit)
+lambda-deployment/aws-credentials.local.txt
+aws-credentials.local.txt
+
 # Keep assets directory structure
 !assets/
 !assets/images/

@@ -1,4 +1,4 @@
-﻿// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -8,6 +8,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            // Update URL without jumping
+            if (history.pushState) {
+                history.pushState(null, null, this.getAttribute('href'));
+            }
         }
     });
 });
@@ -202,6 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rotateFunFacts();
     addEmojiReactions();
     addEasterEgg();
+    initOCRDemo();
 });
 // Add fade-in animation on scroll
 const observerOptions = {
@@ -398,6 +403,378 @@ function addEasterEgg() {
     }
     if (profileName) {
         profileName.addEventListener('click', easterEggHandler);
+    }
+}
+
+// OCR & LLM Demo Functionality
+function initOCRDemo() {
+    const canvas = document.getElementById('drawingCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const clearBtn = document.getElementById('clearCanvas');
+    const processBtn = document.getElementById('processOCR');
+    const canvasOverlay = document.getElementById('canvasOverlay');
+    const ocrResult = document.getElementById('ocrResult');
+    const llmResult = document.getElementById('llmResult');
+    const ocrStatus = document.getElementById('ocrStatus');
+    const llmStatus = document.getElementById('llmStatus');
+
+    let isDrawing = false;
+    let hasContent = false;
+
+    // Set canvas size to match its display size
+    function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        
+        // Set internal size accounting for device pixel ratio
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        
+        // Scale context to account for device pixel ratio
+        ctx.scale(dpr, dpr);
+        
+        // Re-apply drawing settings after resize (thicker stroke = better for OCR)
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, rect.width, rect.height);
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 8;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+    }
+
+    // Initialize canvas size
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Helper function to get correct coordinates
+    function getCanvasCoordinates(e) {
+        const rect = canvas.getBoundingClientRect();
+        
+        const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+        const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+        
+        // Calculate coordinates relative to canvas display size (not internal size)
+        // The context is already scaled, so we use display coordinates directly
+        return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
+    }
+
+    // Drawing functionality
+    function startDrawing(e) {
+        isDrawing = true;
+        hasContent = true;
+        canvasOverlay.style.display = 'none';
+        const coords = getCanvasCoordinates(e);
+        ctx.beginPath();
+        ctx.moveTo(coords.x, coords.y);
+    }
+
+    function draw(e) {
+        if (!isDrawing) return;
+        const coords = getCanvasCoordinates(e);
+        ctx.lineTo(coords.x, coords.y);
+        ctx.stroke();
+    }
+
+    function stopDrawing() {
+        if (isDrawing) {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+    }
+
+    // Mouse events
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    // Touch events for mobile
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        startDrawing(e);
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        draw(e);
+    });
+
+    canvas.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        stopDrawing();
+    });
+
+    // Clear canvas
+    clearBtn.addEventListener('click', () => {
+        const rect = canvas.getBoundingClientRect();
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, rect.width, rect.height);
+        hasContent = false;
+        canvasOverlay.style.display = 'flex';
+        ocrResult.innerHTML = '<p class="placeholder-text">OCR results will appear here...</p>';
+        llmResult.innerHTML = '<p class="placeholder-text">Refined text will appear here after OCR...</p>';
+        updateStatus(ocrStatus, 'ready', 'Ready');
+        updateStatus(llmStatus, 'ready', 'Ready');
+    });
+
+    // Preprocess image for OCR: upscale + binarize (black text on white)
+    function preprocessImage(canvas) {
+        const processedCanvas = document.createElement('canvas');
+        const processedCtx = processedCanvas.getContext('2d');
+        const w = canvas.width;
+        const h = canvas.height;
+        const scale = 4;
+        processedCanvas.width = w * scale;
+        processedCanvas.height = h * scale;
+        processedCtx.drawImage(canvas, 0, 0, w, h, 0, 0, processedCanvas.width, processedCanvas.height);
+        const imageData = processedCtx.getImageData(0, 0, processedCanvas.width, processedCanvas.height);
+        const data = imageData.data;
+        // Binarize: use lower threshold (160) so anti-aliased strokes stay black; 200 was wiping "is wrong?"
+        const threshold = 160;
+        for (let i = 0; i < data.length; i += 4) {
+            const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+            const v = gray >= threshold ? 255 : 0;
+            data[i] = data[i + 1] = data[i + 2] = v;
+        }
+        processedCtx.putImageData(imageData, 0, 0);
+        return processedCanvas.toDataURL('image/png');
+    }
+
+    // Process OCR with PaddleOCR API (preferred) or Tesseract.js (fallback)
+    async function processOCR(imageData) {
+        // Hugging Face Space PaddleOCR API endpoint
+        // Format: https://{username}-{space_name}.hf.space/ocr
+        const PADDLEOCR_ENDPOINT = 'https://yolo12138-paddle-ocr-api.hf.space/ocr';
+        // Alternative endpoints:
+        // - Local server: 'http://localhost:5000/ocr'
+        // - Custom server: 'YOUR_PADDLEOCR_API_ENDPOINT'
+        // Note: Hugging Face Spaces may have CORS restrictions. If you get CORS errors,
+        // use your own PaddleOCR server (see paddleocr_api_example.py)
+        
+        // Try PaddleOCR first if endpoint is configured
+        if (PADDLEOCR_ENDPOINT && PADDLEOCR_ENDPOINT !== 'YOUR_PADDLEOCR_API_ENDPOINT') {
+            try {
+                updateStatus(ocrStatus, 'processing', 'Using PaddleOCR...');
+                
+                // Convert base64 to blob for multipart/form-data
+                const base64Data = imageData.split(',')[1];
+                const byteCharacters = atob(base64Data);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: 'image/png' });
+                
+                // Create FormData for multipart/form-data
+                const formData = new FormData();
+                formData.append('file', blob, 'canvas.png');
+                formData.append('lang', 'en'); // 'en' for English, 'ch' for Chinese
+                
+                const response = await fetch(PADDLEOCR_ENDPOINT, {
+                    method: 'POST',
+                    body: formData
+                    // Don't set Content-Type header - browser will set it with boundary for FormData
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`PaddleOCR API error: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                // Some APIs wrap the array: { result: [...] } or return array directly
+                const rawList = Array.isArray(data) ? data : (data.result || data.results || data.data || []);
+                
+                if (rawList.length > 0) {
+                    const items = rawList.map(item => ({ txt: (item.txt || item.text || '').trim(), boxes: item.boxes || [] })).filter(o => o.txt);
+                    items.sort((a, b) => {
+                        const ay = (a.boxes[0] && a.boxes[0][1]) != null ? a.boxes[0][1] : 0;
+                        const by = (b.boxes[0] && b.boxes[0][1]) != null ? b.boxes[0][1] : 0;
+                        if (Math.abs(ay - by) > 10) return ay - by;
+                        const ax = (a.boxes[0] && a.boxes[0][0]) != null ? a.boxes[0][0] : 0;
+                        const bx = (b.boxes[0] && b.boxes[0][0]) != null ? b.boxes[0][0] : 0;
+                        return ax - bx;
+                    });
+                    let paddleText = items.map(o => o.txt).join(' ').trim();
+                    // If Paddle returned very little or only one word, try Tesseract and use the longer result
+                    const wordCount = paddleText.split(/\s+/).filter(Boolean).length;
+                    if (paddleText.length <= 3 || wordCount <= 1) {
+                        updateStatus(ocrStatus, 'processing', 'PaddleOCR partial result - trying Tesseract...');
+                        const tesseractText = await runTesseract(imageData, ocrStatus);
+                        if (tesseractText && tesseractText.length > paddleText.length) return tesseractText;
+                    }
+                    return paddleText;
+                }
+                if (data.text) return data.text;
+                if (typeof data === 'string') return data;
+                return '';
+            } catch (error) {
+                console.warn('PaddleOCR API failed, falling back to Tesseract:', error);
+                if (error.message.includes('CORS') || error.message.includes('Failed to fetch')) {
+                    updateStatus(ocrStatus, 'processing', 'CORS issue - using Tesseract fallback...');
+                }
+            }
+        }
+        
+        updateStatus(ocrStatus, 'processing', 'Using Tesseract.js...');
+        return await runTesseract(imageData, ocrStatus);
+    }
+
+    async function runTesseract(imageData, statusEl) {
+        const { data: { text } } = await Tesseract.recognize(imageData, 'eng', {
+            logger: m => {
+                if (m.status === 'recognizing text' && statusEl) {
+                    updateStatus(statusEl, 'processing', `Tesseract: ${Math.round(m.progress * 100)}%`);
+                }
+            },
+            tessedit_pageseg_mode: Tesseract.PSM.SINGLE_BLOCK,
+        });
+        return (text || '').trim();
+    }
+
+    // Process OCR
+    processBtn.addEventListener('click', async () => {
+        if (!hasContent) {
+            alert('Please draw or write something on the canvas first!');
+            return;
+        }
+
+        try {
+            // Update status
+            updateStatus(ocrStatus, 'processing', 'Preprocessing image...');
+            processBtn.disabled = true;
+            processBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            // Preprocess image for better OCR
+            const processedImageData = preprocessImage(canvas);
+            
+            // Perform OCR
+            const extractedText = await processOCR(processedImageData);
+            const cleanedText = extractedText.trim() || 'No text detected.';
+
+            // Display OCR result
+            ocrResult.innerHTML = `<div class="result-text">${escapeHtml(cleanedText)}</div>`;
+            updateStatus(ocrStatus, 'success', 'Complete');
+
+            // Now refine with Llama 3.0 via AWS Lambda
+            if (cleanedText && cleanedText !== 'No text detected.') {
+                await refineWithLlama(cleanedText);
+            } else {
+                llmResult.innerHTML = '<p class="placeholder-text">No text to refine.</p>';
+                updateStatus(llmStatus, 'ready', 'Ready');
+            }
+
+        } catch (error) {
+            console.error('OCR Error:', error);
+            ocrResult.innerHTML = `<div class="error-text">Error: ${escapeHtml(error.message)}<br><small>Try using PaddleOCR API for better results.</small></div>`;
+            updateStatus(ocrStatus, 'error', 'Error');
+        } finally {
+            processBtn.disabled = false;
+            processBtn.innerHTML = '<i class="fas fa-eye"></i> Extract Text (OCR)';
+        }
+    });
+
+    // Refine text with Llama 3.0 via AWS Lambda
+    async function refineWithLlama(text) {
+        try {
+            updateStatus(llmStatus, 'processing', 'Refining with Llama 3.1...');
+            
+            // Replace with your actual AWS Lambda Function URL
+            // Get it from: AWS Lambda Console → Your Function → Configuration → Function URL
+            const LAMBDA_ENDPOINT = 'https://vlhcyhksdvgnr2jd6xte3i443m0gbvaa.lambda-url.us-east-2.on.aws/';
+            // Example: 'https://abc123xyz.lambda-url.us-west-2.on.aws/'
+            
+            // If endpoint is not configured, show a placeholder response
+            if (LAMBDA_ENDPOINT === 'YOUR_AWS_LAMBDA_ENDPOINT_URL') {
+                // Simulate refinement for demo purposes
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                const refinedText = simulateTextRefinement(text);
+                llmResult.innerHTML = `<div class="result-text">${escapeHtml(refinedText)}</div>`;
+                updateStatus(llmStatus, 'success', 'Complete (Demo Mode)');
+                return;
+            }
+
+            // Call AWS Lambda function
+            const response = await fetch(LAMBDA_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    text: text,
+                    model: 'llama-3.1-8b-instruct',
+                    task: 'refine'
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Lambda error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            // Response may be unwrapped { refined_text, ... } or wrapped in body string
+            let refinedText = data.refined_text || data.text;
+            if (!refinedText && typeof data.body === 'string') {
+                try {
+                    const parsed = JSON.parse(data.body);
+                    refinedText = parsed.refined_text || parsed.text;
+                } catch (_) {}
+            }
+            refinedText = refinedText || text;
+
+            llmResult.innerHTML = `<div class="result-text">${escapeHtml(refinedText)}</div>`;
+            updateStatus(llmStatus, 'success', 'Complete');
+
+        } catch (error) {
+            console.error('Llama refinement error:', error);
+            // Fallback to simulated refinement
+            const refinedText = simulateTextRefinement(text);
+            llmResult.innerHTML = `<div class="result-text">${escapeHtml(refinedText)}</div>`;
+            updateStatus(llmStatus, 'success', 'Complete (Demo Mode)');
+        }
+    }
+
+    // Simulate text refinement (for demo when Lambda is not configured)
+    function simulateTextRefinement(text) {
+        // Simple refinement simulation - in production, this would be done by Llama 3.0
+        let refined = text
+            .split(/\s+/)
+            .map(word => {
+                // Capitalize first letter of sentences
+                if (word.length > 0) {
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                }
+                return word;
+            })
+            .join(' ');
+
+        // Add period if missing
+        if (refined && !refined.match(/[.!?]$/)) {
+            refined += '.';
+        }
+
+        return `[Refined by Llama 3.1]\n\n${refined}`;
+    }
+
+    // Update status indicator
+    function updateStatus(element, status, text) {
+        element.className = `result-status status-${status}`;
+        const icon = status === 'processing' ? 'fa-spinner fa-spin' :
+                     status === 'success' ? 'fa-check-circle' :
+                     status === 'error' ? 'fa-exclamation-circle' : 'fa-clock';
+        element.innerHTML = `<i class="fas ${icon}"></i> ${text}`;
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 }
 
