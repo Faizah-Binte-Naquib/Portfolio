@@ -1,645 +1,217 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faizah Binte Naquib - Machine Learning Engineer</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Faizah Binte Naquib, an applied machine learning scientist working in computer vision, OCR, autonomous systems, and edge inference.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Faizah Binte Naquib — Applied ML Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js" defer></script>
+  <script src="script.js" defer></script>
+  <script type="module" src="visual.js"></script>
 </head>
 <body>
-    <!-- Code Rain Effect -->
-    <canvas id="codeRain" class="code-rain"></canvas>
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="#summary">Summary</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#publications">Publications</a>
-                <a href="#repositories">Repositories</a>
-                <a href="#demo">Demo</a>
-                <a href="#articles">Articles</a>
-                <a href="#awards">Awards</a>
-            </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="nav-wrap">
+      <a class="brand" href="#top">Faizah Binte Naquib</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#research">Research</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a class="resume-nav" href="Faizah_Binte_Naquib_Resume.pdf" target="_blank">Résumé</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="overline">Machine Learning Scientist · Edmonton, Alberta</p>
+        <h1>Hi, I’m Faizah.</h1>
+        <h2>I work on the awkward, interesting part of machine learning.</h2>
+        <p class="hero-summary">The part where the document is noisy, the sensors disagree, the coordinate frames are off, or the model has to fit on hardware with opinions. Most of my work sits somewhere between research and getting the thing to actually behave.</p>
+        <div class="actions">
+          <a class="button primary" href="#work">View selected work</a>
+          <a class="button secondary" href="Faizah_Binte_Naquib_Resume.pdf" download>Download résumé</a>
         </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="profile-section">
-                    <div class="profile-image-wrapper">
-                        <div class="profile-flip-card">
-                            <div class="profile-flip-front">
-                                <img src="assets/images/profile.jpg" alt="Faizah Binte Naquib" class="profile-image" id="profileImage">
-                                <div class="profile-placeholder" id="profilePlaceholder">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            </div>
-                            <div class="profile-flip-back">
-                                <div class="flip-back-content">
-                                    <i class="fas fa-code"></i>
-                                    <div class="flip-code">
-                                        <span class="code-line">import ml_engineer</span>
-                                        <span class="code-line">from faizah import *</span>
-                                        <span class="code-line">print("Hello! 👋")</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-text">
-                        <h1 class="name" id="profileName">Faizah Binte Naquib</h1>
-                        <p class="title">
-                            <i class="fas fa-brain"></i>
-                            Machine Learning Engineer
-                        </p>
-                        <p class="tagline">Building intelligent systems that see, understand, and navigate the world</p>
-                        <div class="fun-facts" id="funFacts">
-                            <i class="fas fa-lightbulb"></i>
-                            <span class="fun-fact-text" id="funFactText">Did you know? I once debugged a model for 3 days only to find a typo in a variable name 😅</span>
-                        </div>
-                        <div class="contact-info">
-                            <a href="tel:+17807101627" class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <span>(+1) 780-710-1627</span>
-                            </a>
-                            <a href="mailto:faizahbintenaquib@gmail.com" class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>faizahbintenaquib@gmail.com</span>
-                            </a>
-                            <a href="https://github.com/Faizah-Binte-Naquib" target="_blank" class="contact-item">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/fbnaquib-a07932174/" target="_blank" class="contact-item">
-                                <i class="fab fa-linkedin"></i>
-                                <span>LinkedIn</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Demo Call-to-Action -->
-                <div class="demo-cta">
-                    <div class="demo-cta-content">
-                        <div class="demo-cta-icon">
-                            <i class="fas fa-magic"></i>
-                        </div>
-                        <div class="demo-cta-text">
-                            <h3>Try My Interactive Demo!</h3>
-                            <p>Draw on canvas → OCR extracts text → Llama 3.1 refines it. See my skills in action! 🚀</p>
-                        </div>
-                        <a href="#demo" class="demo-cta-button">
-                            <span>Try Demo</span>
-                            <i class="fas fa-arrow-down"></i>
-                        </a>
-                    </div>
-                    <div class="demo-cta-particles"></div>
-                </div>
-            </div>
+        <div class="social-links">
+          <a href="mailto:faizahbintenaquib@gmail.com">Email</a>
+          <a href="https://github.com/Faizah-Binte-Naquib" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/faizah-binte-naquib-a07932174/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Summary Section -->
-            <section id="summary" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-user-circle"></i>
-                    About Me
-                </h2>
-                <div class="summary-content">
-                    <div class="summary-text">
-                        <div class="summary-highlights">
-                            <div class="highlight-item">
-                                <i class="fas fa-eye"></i>
-                                <span>Computer Vision & OCR</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i class="fas fa-robot"></i>
-                                <span>Robotics & Autonomous Systems</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i class="fas fa-brain"></i>
-                                <span>ML Lifecycle Expertise</span>
-                            </div>
-                            <div class="highlight-item">
-                                <i class="fas fa-server"></i>
-                                <span>Edge Deployment</span>
-                            </div>
-                        </div>
-                        <p class="summary-paragraph">Machine learning engineer with diverse experience in computer vision, including object detection, OCR pipelines, image preprocessing, and 3D spatial reasoning. Experienced across the ML lifecycle, from dataset preparation and model development to deployment and inference on edge systems.</p>
-                    </div>
-                    <div class="quick-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-code-branch"></i>
-                            <div class="stat-content">
-                                <span class="stat-number">5+</span>
-                                <span class="stat-label">Years Experience</span>
-                            </div>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-project-diagram"></i>
-                            <div class="stat-content">
-                                <span class="stat-number">10+</span>
-                                <span class="stat-label">Projects</span>
-                            </div>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div class="stat-content">
-                                <span class="stat-number">2</span>
-                                <span class="stat-label">Publications</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Skills Section -->
-            <section id="skills" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-tools"></i>
-                    Skills & Technologies
-                </h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3 class="skill-title">Languages</h3>
-                        <div class="skill-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">C++</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">SQL</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-title">Full-stack / Web</h3>
-                        <div class="skill-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">RESTful APIs</span>
-                            <span class="tag">Full-stack Development</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-title">ML / CV</h3>
-                        <div class="skill-tags">
-                            <span class="tag">PyTorch</span>
-                            <span class="tag">TensorFlow</span>
-                            <span class="tag">OpenCV</span>
-                            <span class="tag">OCR pipelines</span>
-                            <span class="tag">Object Detection</span>
-                            <span class="tag">Image Processing</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-title">NLP / LLMs</h3>
-                        <div class="skill-tags">
-                            <span class="tag">BERT-based models</span>
-                            <span class="tag">GPT-style models</span>
-                            <span class="tag">LLaMA</span>
-                            <span class="tag">Prompt Engineering</span>
-                            <span class="tag">Few-/One-shot Learning</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-title">Robotics / AV</h3>
-                        <div class="skill-tags">
-                            <span class="tag">ROS2</span>
-                            <span class="tag">Autoware</span>
-                            <span class="tag">Perception Pipelines</span>
-                            <span class="tag">LiDAR–Camera Fusion</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3 class="skill-title">Systems / Tools</h3>
-                        <div class="skill-tags">
-                            <span class="tag">Docker</span>
-                            <span class="tag">Git</span>
-                            <span class="tag">CI/CD</span>
-                            <span class="tag">AWS</span>
-                            <span class="tag">Model Profiling</span>
-                            <span class="tag">Unit / integration testing</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Experience Section -->
-            <section id="experience" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-briefcase"></i>
-                    Professional Experience
-                </h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="experience-header">
-                                <h3 class="job-title">Machine Learning Scientist</h3>
-                                <a href="https://correct-ai.com" target="_blank" class="company">Correct-AI</a>
-                                <span class="date">Aug 2025 - Present</span>
-                            </div>
-                            <ul class="experience-list">
-                                <li><i class="fas fa-cog"></i> Responsible for perception module in Autoware, customizing modular pipelines for our hardware stack and training models for robustness under operational conditions.</li>
-                                <li><i class="fas fa-map"></i> Created and maintained 3D maps for autonomous navigation, including Lanelet2 maps, mesh representations, and point cloud extraction from meshes.</li>
-                                <li><i class="fas fa-car-side"></i> Led automatic emergency braking project: trained and maintained detection models for pedestrians and vehicles, selecting datasets and determining retraining schedules.</li>
-                                <li><i class="fas fa-microchip"></i> Optimized detection models for deployment on automotive-grade edge computing hardware using quantization and pruning techniques.</li>
-                                <li><i class="fas fa-exclamation-triangle"></i> Implemented obstructed sensor detection for cameras and LiDAR, triggering alerts when perception inputs were degraded.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="experience-header">
-                                <h3 class="job-title">Machine Learning Research Assistant</h3>
-                                <a href="https://synapsismedical.com" target="_blank" class="company">Synapsis Medical Technologies</a>
-                                <span class="date">May 2025 - Aug 2025</span>
-                            </div>
-                            <ul class="experience-list">
-                                <li><i class="fas fa-file-medical"></i> Designed and implemented OCR pipelines for healthcare document ingestion.</li>
-                                <li><i class="fas fa-language"></i> Leveraged large language models (e.g., GPT-style and LLaMA-based models) with prompt engineering and one-shot learning to refine document understanding and improve field extraction accuracy for clinical documents.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="experience-header">
-                                <h3 class="job-title">WILO Participant</h3>
-                                <a href="https://www.amii.ca" target="_blank" class="company">Alberta Machine Intelligence Institute (Amii)</a>
-                                <span class="date">May 2025 - Aug 2025</span>
-                            </div>
-                            <ul class="experience-list">
-                                <li><i class="fas fa-lightbulb"></i> Advised startups on translating business requirements into ML solutions and validating prototypes.</li>
-                                <li><i class="fas fa-clipboard-check"></i> Scoped and documented ML system designs and evaluation plans for production handoff.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="experience-header">
-                                <h3 class="job-title">Software Engineer Intern</h3>
-                                <a href="https://www.optimizely.com" target="_blank" class="company">Optimizely</a>
-                                <span class="date">Mar 2022 - Aug 2022</span>
-                            </div>
-                            <ul class="experience-list">
-                                <li><i class="fas fa-code"></i> Developed full-stack web application features using React, JavaScript/TypeScript, and REST APIs, integrating frontend components with AWS-hosted backend services.</li>
-                                <li><i class="fas fa-shield-alt"></i> Implemented secure third-party authentication flows and migrated legacy frontend components to modern React architecture.</li>
-                                <li><i class="fas fa-database"></i> Optimized database queries and API integrations, working with SQL databases and cloud infrastructure to improve application performance and reliability.</li>
-                                <li><i class="fas fa-bug"></i> Enhanced code quality through systematic debugging, comprehensive test coverage, and code reviews.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <div class="experience-header">
-                                <h3 class="job-title">Tech Intern</h3>
-                                <span class="company">Thrive EdTech</span>
-                                <span class="date">Jul 2021 - Oct 2021</span>
-                            </div>
-                            <ul class="experience-list">
-                                <li><i class="fas fa-laptop-code"></i> Developed web applications using React and REST APIs.</li>
-                                <li><i class="fas fa-magic"></i> Prototyped OCR-based automation for content digitization.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Education Section -->
-            <section id="education" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-graduation-cap"></i>
-                    Education
-                </h2>
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="degree">M.Sc. in Computing Science</h3>
-                        <a href="https://www.ualberta.ca" target="_blank" class="institution">University of Alberta</a>
-                        <span class="date">2022 - 2025</span>
-                    </div>
-                    <div class="thesis">
-                        <h4 class="thesis-title">
-                            <i class="fas fa-book"></i>
-                            Thesis: Optimizing OCR Performance Through Black-Box Approximation on Full-Resolution Text Images
-                        </h4>
-                        <ul class="thesis-points">
-                            <li><i class="fas fa-check-circle"></i> Conducted <a href="https://www.intuit.com/ca/" target="_blank" class="inline-link">Intuit</a>-funded research to optimize OCR preprocessing.</li>
-                            <li><i class="fas fa-check-circle"></i> Reduced OCR query calls by 95% through bounding-box dependency reduction.</li>
-                            <li><i class="fas fa-check-circle"></i> Addressed resolution variability in large-scale OCR systems and reduced Word Error Rate by 30.31% compared to prior methods.</li>
-                        </ul>
-                        <div class="advisors">
-                            <strong><i class="fas fa-user-tie"></i> Advisors:</strong>
-                            <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=Nilanjan+Ray+University+of+Alberta" target="_blank" class="inline-link">Dr. Nilanjan Ray</a>, University of Alberta | 
-                            <a href="https://www.linkedin.com/in/eric-van-oeveren/" target="_blank" class="inline-link">Eric Van Oeveren</a>, Senior Data Scientist, <a href="https://www.intuit.com/ca/" target="_blank" class="inline-link">Intuit</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="education-item">
-                    <div class="education-header">
-                        <h3 class="degree">B.Sc. in Computer Science and Engineering</h3>
-                        <a href="https://www.aust.edu" target="_blank" class="institution">Ahsanullah University of Science and Technology</a>
-                        <span class="date">2016 - 2021</span>
-                    </div>
-                    <div class="thesis">
-                        <h4 class="thesis-title">
-                            <i class="fas fa-book"></i>
-                            Thesis: Extraction and Classification of Finger Vein Patterns Using Maximum Curvature and Deep Learning
-                        </h4>
-                        <ul class="thesis-points">
-                            <li><i class="fas fa-check-circle"></i> Built a biometric authentication pipeline combining vein extraction and deep learning.</li>
-                            <li><i class="fas fa-check-circle"></i> Designed preprocessing to mitigate shading and deformation, achieving 98.87% classification accuracy on evaluated datasets.</li>
-                        </ul>
-                        <div class="advisors">
-                            <strong><i class="fas fa-user-tie"></i> Advisors:</strong>
-                            <a href="https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors=Kazi+A+Kalpoma+Ahsanullah" target="_blank" class="inline-link">Dr. Kazi A. Kalpoma</a>, Ahsanullah University of Science and Technology
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Publications Section -->
-            <section id="publications" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-book"></i>
-                    Publications
-                </h2>
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <span class="pub-year">2020</span>
-                        <h3 class="pub-title">Comparative Study of Deep Learning Based Finger Vein Biometric Authentication Systems</h3>
-                    </div>
-                    <p class="pub-authors">F. Elahee, F. Mim, F. B. Naquib, S. Tabassom, T. Hossain, K. A. Kalpoma</p>
-                    <p class="pub-venue">In Proceedings of the 2nd International Conference on Advanced Information and Communication Technology (ICAICT), Dhaka, Bangladesh, pp. 444-448. IEEE, 2020.</p>
-                    <a href="https://doi.org/10.1109/ICAICT51780.2020.9333515" target="_blank" class="pub-link">DOI: 10.1109/ICAICT51780.2020.9333515</a>
-                </div>
-
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <span class="pub-year">2020</span>
-                        <h3 class="pub-title">Modified Maximum Curvature Method (MMCM) and Logistic Regression: A Hybrid Architecture for Finger Vein Biometric Recognition System</h3>
-                    </div>
-                    <p class="pub-authors">F. B. Naquib, S. Tabassom, F. Elahee, F. Mim, T. Hossain, K. A. Kalpoma</p>
-                    <p class="pub-venue">In Proceedings of the 23rd International Conference on Computer and Information Technology (ICCIT), Dhaka, Bangladesh, pp. 1-7. IEEE, 2020.</p>
-                    <a href="https://doi.org/10.1109/ICCIT51783.2020.9392736" target="_blank" class="pub-link">DOI: 10.1109/ICCIT51783.2020.9392736</a>
-                </div>
-
-                <h3 class="subsection-title">Research Manuscripts</h3>
-                <div class="publication-item">
-                    <div class="publication-header">
-                        <span class="pub-year">2026</span>
-                        <h3 class="pub-title">Optimizing OCR Performance with an Efficient Black-Box Approximation Framework</h3>
-                    </div>
-                    <p class="pub-authors">F. B. Naquib, E. Van Oeveren, N. Ray</p>
-                    <p class="pub-venue">Journal manuscript in preparation</p>
-                </div>
-            </section>
-
-            <!-- GitHub Repositories Section -->
-            <section id="repositories" class="section">
-                <h2 class="section-title">
-                    <i class="fab fa-github"></i>
-                    Featured Projects
-                </h2>
-                <p class="section-intro">
-                    <i class="fas fa-star"></i>
-                    Highlighted projects from my GitHub showcasing my work in machine learning, computer vision, and software engineering. Each project demonstrates real-world problem-solving and technical expertise.
-                </p>
-                
-                <div class="repos-grid">
-                    <!-- Repository cards will be populated by JavaScript -->
-                </div>
-                
-                <div class="view-all-repos">
-                    <a href="https://github.com/Faizah-Binte-Naquib?tab=repositories" target="_blank" class="view-all-btn">
-                        <i class="fab fa-github"></i>
-                        View All Repositories on GitHub
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </section>
-
-            <!-- OCR & LLM Demo Section -->
-            <section id="demo" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-magic"></i>
-                    Interactive OCR & LLM Demo
-                </h2>
-                <p class="section-intro">
-                    <i class="fas fa-pen-fancy"></i>
-                    Draw or write anything on the canvas below. This demo showcases OCR text extraction using PaddleOCR (or Tesseract.js as fallback) and text refinement using Llama 3.1 via AWS Lambda.
-                </p>
-                
-                <div class="demo-container">
-                    <div class="demo-panel">
-                        <div class="demo-header">
-                            <h3><i class="fas fa-paint-brush"></i> Drawing Canvas</h3>
-                            <div class="demo-controls">
-                                <button id="clearCanvas" class="demo-btn">
-                                    <i class="fas fa-eraser"></i> Clear
-                                </button>
-                                <button id="processOCR" class="demo-btn demo-btn-primary">
-                                    <i class="fas fa-eye"></i> Extract Text (OCR)
-                                </button>
-                            </div>
-                        </div>
-                        <div class="canvas-wrapper">
-                            <canvas id="drawingCanvas"></canvas>
-                            <div class="canvas-overlay" id="canvasOverlay">
-                                <p>Draw or write here...</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="demo-results">
-                        <div class="result-panel">
-                            <div class="result-header">
-                                <h3><i class="fas fa-file-alt"></i> Extracted Text (OCR)</h3>
-                                <div class="result-status" id="ocrStatus">
-                                    <i class="fas fa-clock"></i> Ready
-                                </div>
-                            </div>
-                            <div class="result-content" id="ocrResult">
-                                <p class="placeholder-text">OCR results will appear here...</p>
-                            </div>
-                        </div>
-
-                        <div class="result-panel">
-                            <div class="result-header">
-                                <h3><i class="fas fa-brain"></i> Refined Text (Llama 3.1)</h3>
-                                <div class="result-status" id="llmStatus">
-                                    <i class="fas fa-clock"></i> Ready
-                                </div>
-                            </div>
-                            <div class="result-content" id="llmResult">
-                                <p class="placeholder-text">Refined text will appear here after OCR...</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="demo-info">
-                        <div class="info-card">
-                            <i class="fas fa-info-circle"></i>
-                            <div>
-                                <strong>How it works:</strong>
-                                <ol>
-                                    <li>Draw or write on the canvas using your mouse or touch</li>
-                                    <li>Click "Extract Text (OCR)" to process the image with PaddleOCR (or Tesseract.js fallback)</li>
-                                    <li>The extracted text is automatically refined using Llama 3.1 via AWS Lambda</li>
-                                    <li>View both the raw OCR output and the refined text below</li>
-                                </ol>
-                            </div>
-                        </div>
-                </div>
-            </section>
-
-            <!-- Recent Articles Section -->
-            <section id="articles" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-newspaper"></i>
-                    Recent Articles of Interest
-                </h2>
-                <p class="section-intro">
-                    <i class="fas fa-book-reader"></i>
-                    Articles and research papers I've been exploring, particularly around the fascinating intersection of machine learning and neuroscience.
-                </p>
-                <div class="articles-grid">
-                    <div class="article-card">
-                        <div class="article-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3 class="article-title">ML for Dream Reconstruction and Recording</h3>
-                        <p class="article-description">
-                            Exploring cutting-edge research on using machine learning models to decode and reconstruct dream content from brain activity. This fascinating intersection of neuroscience and AI could revolutionize our understanding of consciousness and memory.
-                        </p>
-                        <div class="article-tags">
-                            <span class="article-tag">Machine Learning</span>
-                            <span class="article-tag">Neuroscience</span>
-                            <span class="article-tag">Brain-Computer Interface</span>
-                            <span class="article-tag">Deep Learning</span>
-                        </div>
-                        <div class="article-topics">
-                            <p><strong>Key Topics:</strong> Neural decoding, EEG/fMRI analysis, generative models for dream reconstruction, consciousness research</p>
-                        </div>
-                    </div>
-                    <div class="article-card">
-                        <div class="article-icon">
-                            <i class="fas fa-microscope"></i>
-                        </div>
-                        <h3 class="article-title">Advanced Computer Vision in Medical Imaging</h3>
-                        <p class="article-description">
-                            Recent advances in applying computer vision and deep learning to medical image analysis, including breakthroughs in early disease detection and automated diagnosis systems.
-                        </p>
-                        <div class="article-tags">
-                            <span class="article-tag">Computer Vision</span>
-                            <span class="article-tag">Medical AI</span>
-                            <span class="article-tag">Healthcare</span>
-                        </div>
-                    </div>
-                    <div class="article-card">
-                        <div class="article-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="article-title">Autonomous Systems and Edge AI</h3>
-                        <p class="article-description">
-                            Latest developments in deploying ML models on edge devices for autonomous systems, focusing on real-time inference, model optimization, and safety-critical applications.
-                        </p>
-                        <div class="article-tags">
-                            <span class="article-tag">Edge Computing</span>
-                            <span class="article-tag">Autonomous Vehicles</span>
-                            <span class="article-tag">Model Optimization</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Awards Section -->
-            <section id="awards" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-trophy"></i>
-                    Fellowships & Awards
-                </h2>
-                <div class="awards-list">
-                    <div class="award-item">
-                        <span class="award-year">2023-2025</span>
-                        <div class="award-content">
-                            <h3 class="award-title">Summer Research Assistantship</h3>
-                            <p>Collaborated with <a href="https://www.intuit.com/ca/" target="_blank" class="inline-link">Intuit</a> to improve OCR image preprocessing pipelines.</p>
-                        </div>
-                    </div>
-                    <div class="award-item">
-                        <span class="award-year">2022-2024</span>
-                        <div class="award-content">
-                            <h3 class="award-title">Teaching Assistantship</h3>
-                            <p>CMPUT 272 -- Formal Systems and Logic in Computing Science, University of Alberta</p>
-                        </div>
-                    </div>
-                    <div class="award-item">
-                        <span class="award-year">2020</span>
-                        <div class="award-content">
-                            <h3 class="award-title">
-                                <a href="https://drive.google.com/drive/u/1/search?q=iccit" target="_blank" class="award-link">
-                                    Third Best Paper Award <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </h3>
-                            <p>23rd International Conference on Computer and Information Technology (ICCIT) - <a href="https://drive.google.com/drive/u/1/search?q=iccit" target="_blank" class="inline-link">View Certificate</a></p>
-                        </div>
-                    </div>
-                    <div class="award-item">
-                        <span class="award-year">2019</span>
-                        <div class="award-content">
-                            <h3 class="award-title">
-                                <a href="https://www.bracusa.org/news/bracathon-30-where-tech-meets-social-change/" target="_blank" class="award-link">
-                                    Top-3 Finish, BRACathon 3.0 <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </h3>
-                            <p><strong>BRACathon</strong> is a competitive hackathon organized by BRAC University that brings together students and developers to solve real-world problems through innovative technology solutions. The competition focuses on software development, problem-solving, and creative thinking. <a href="https://www.aust.edu/cse/news/253" target="_blank" class="inline-link">View Achievement</a></p>
-                        </div>
-                    </div>
-                    <div class="award-item">
-                        <span class="award-year">2020</span>
-                        <div class="award-content">
-                            <h3 class="award-title">
-                                <a href="https://basis.org.bd/" target="_blank" class="award-link">
-                                    BASIS SOFTEXPO 2020 Participation <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </h3>
-                            <p><strong>BASIS SOFTEXPO</strong> is Bangladesh's largest software and IT services exhibition, organized by the Bangladesh Association of Software and Information Services (BASIS). The event showcases innovative software solutions, IT services, and provides a platform for networking, knowledge sharing, and business opportunities in Bangladesh's growing tech industry. <a href="https://aust.edu/cse/departmental_activities/314" target="_blank" class="inline-link">View Participation</a></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      </div>
+      <div class="hero-visual">
+        <div class="point-cloud-wrap">
+          <svg class="fusion-fallback" viewBox="0 0 340 360" aria-hidden="true">
+            <defs><marker id="path-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8bc7ad"/></marker></defs>
+            <path class="fallback-road" d="M75 340 L132 80 M265 340 L208 80 M170 340 L170 80"/>
+            <path class="fallback-frustum" d="M145 305 L92 102 M195 305 L248 102"/>
+            <g class="fallback-person person-near">
+              <circle cx="208" cy="140" r="13"/><path d="M208 155 L208 218 M208 171 L185 196 M208 171 L230 197 M208 218 L192 258 M208 218 L224 258"/>
+              <rect class="camera-box" x="177" y="120" width="62" height="146"/><path class="lidar-box" d="M183 128 L230 122 L240 254 L178 262 Z M183 128 L174 137 L169 250 L178 262 M230 122 L239 132 L249 244 L240 254"/>
+            </g>
+            <g class="fallback-person person-far">
+              <circle cx="127" cy="116" r="8"/><path d="M127 126 L127 164 M127 137 L114 151 M127 137 L140 151 M127 164 L118 188 M127 164 L136 188"/>
+              <rect class="camera-box" x="108" y="103" width="38" height="90"/><rect class="lidar-box" x="112" y="106" width="35" height="86"/>
+            </g>
+            <g class="fallback-car"><path d="M133 314 L144 280 L198 280 L209 314 Z M151 280 L157 263 L186 263 L192 280 Z"/><circle cx="149" cy="315" r="6"/><circle cx="194" cy="315" r="6"/><circle class="sensor-dot" cx="171" cy="258" r="4"/></g>
+            <path class="fallback-path" d="M171 302 C162 270 151 240 149 212 C147 184 147 154 158 119" marker-end="url(#path-arrow)"/>
+            <ellipse class="fallback-scan" cx="171" cy="294" rx="38" ry="12"/><ellipse class="fallback-scan" cx="171" cy="294" rx="64" ry="21"/>
+          </svg>
+          <canvas id="perceptionCanvas" aria-label="Interactive abstract point-cloud visualization inspired by autonomous perception"></canvas>
+          <div class="perception-legend" aria-hidden="true">
+            <span class="legend-camera">Camera · YOLO</span>
+            <span class="legend-lidar">LiDAR · CenterPoint</span>
+          </div>
+          <div class="decision-readout" aria-hidden="true"><small>Fusion decision</small><strong>Pedestrian ahead · slowing</strong></div>
+          <p class="visual-label"><span></span> camera + lidar fusion / move your cursor</p>
         </div>
-    </main>
+        <figure class="profile-photo">
+          <img src="assets/images/profile.jpg" alt="Faizah Binte Naquib at her University of Alberta graduation" width="800" height="805">
+        </figure>
+      </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Faizah Binte Naquib. All rights reserved.</p>
+    <section class="quick-info">
+      <div class="container info-grid">
+        <div><span>Right now</span><strong>Machine Learning Scientist at Correct-AI</strong></div>
+        <div><span>I keep coming back to</span><strong>Computer vision, OCR, autonomy</strong></div>
+        <div><span>Research background</span><strong>MSc Computing Science, 2025</strong></div>
+      </div>
+    </section>
+
+    <section class="section container" id="work" aria-labelledby="work-title">
+      <div class="section-intro">
+        <div><p class="overline">Selected work</p><h2 id="work-title">A few things I’ve spent a lot of time thinking about.</h2></div>
+        <p>I’m more interested in why a system failed—and what changed after I dug into it—than in a perfect-looking final metric.</p>
+      </div>
+
+      <article class="project featured-project">
+        <div class="project-main">
+          <p class="project-type">MSc research · Document AI</p>
+          <h3>Teaching an image to be easier for OCR to read</h3>
+          <p>Tesseract is a black box: useful, but not something you can backpropagate through. For my MSc, I trained a transformer to imitate it closely enough that a modified U-Net could learn which changes to an image would actually help. The oddest part was making the method work on full documents instead of tidy little word crops.</p>
+          <ul class="result-list">
+            <li><strong>58.5%</strong> relative reduction in document word error rate on POS receipts</li>
+            <li><strong>23.5%</strong> relative reduction in document word error rate on SROIE receipts</li>
+            <li><strong>95.1–98.1%</strong> fewer OCR calls per pass through the training data</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://doi.org/10.7939/81732" target="_blank" rel="noreferrer">Read thesis ↗</a>
+            <button class="details-toggle" type="button" aria-expanded="false" aria-controls="ocr-details">Technical details +</button>
+          </div>
+          <div class="project-details" id="ocr-details" hidden>
+            <p><strong>Approach:</strong> modified U-Net preprocessor, TrOCR surrogate, alternating training, group normalization, gradient accumulation, and document-level evaluation.</p>
+            <p><strong>Scope:</strong> results use Tesseract on the thesis’s POS and SROIE splits. The improvements are dataset- and setup-specific, and some large images required resizing or cropping.</p>
+          </div>
         </div>
-    </footer>
+        <aside class="project-aside">
+          <h4>The useful bits</h4>
+          <ul><li>Turning a paper idea into working code</li><li>Designing experiments that answer one thing at a time</li><li>Finding out why a metric moved</li><li>PyTorch, TrOCR, U-Net and Tesseract</li></ul>
+        </aside>
+      </article>
 
-    <script src="script.js"></script>
+      <div class="project-grid">
+        <article class="project-card">
+          <p class="project-type">Current work · Autonomous systems</p>
+          <h3>When two perception runs disagree, I want to know why</h3>
+          <p>A slightly better F1 score is not very useful if one run used a different timestamp, frame, class map, or ground truth. I build repeatable comparisons for LiDAR-only and camera–LiDAR perception, then chase down the unglamorous alignment problems before trusting the result.</p>
+          <p class="project-stack">ROS 2 · Autoware · KITTI · Waymo · T4 · Unity/AWSIM</p>
+          <p class="note">Public-safe summary; proprietary metrics and partner details are excluded.</p>
+        </article>
+        <article class="project-card">
+          <p class="project-type">Personal project · Local AI</p>
+          <h3>I also built a desktop duck with a memory</h3>
+          <p>DuckMind started as a small desktop pet and became my excuse to play with local AI. It remembers care events, retrieves relevant memories, and can use them in dialogue—without needing to send the duck’s entire life story into every prompt.</p>
+          <p class="project-stack">Python · PySide6 · ChromaDB · Ollama</p>
+          <a class="inline-link" href="https://github.com/Faizah-Binte-Naquib/Tamagotchi-Duck" target="_blank" rel="noreferrer">View source ↗</a>
+        </article>
+        <article class="project-card">
+          <p class="project-type">Personal project · Web and OCR</p>
+          <h3>A small OCR demo that admits when it falls back</h3>
+          <p>You can write on a canvas, run OCR, and optionally refine the result. The status labels matter to me: if the hosted service fails and Tesseract or local formatting takes over, the page says so instead of pretending the original model ran.</p>
+          <p class="project-stack">JavaScript · Tesseract.js · Python · AWS Lambda</p>
+          <a class="inline-link" href="#demo">Try the demo ↓</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-intro compact-intro"><div><p class="overline">Experience</p><h2 id="experience-title">Where I’ve worked.</h2></div></div>
+        <div class="experience-list">
+          <article><p class="date">Aug 2025—Present</p><div><h3>Machine Learning Scientist</h3><p class="organization">Correct-AI</p></div><p>Autonomous-system perception and simulation workflows, repeatable evaluation, edge model conversion and profiling, and ongoing terrain-aware planning research.</p></article>
+          <article><p class="date">May—Aug 2025</p><div><h3>ML Research Assistant</h3><p class="organization">Synapsis Medical Technologies</p></div><p>OCR and document-understanding pipelines for noisy clinical material, including structured extraction, retrieval workflows, and prompt engineering.</p></article>
+          <article><p class="date">May—Aug 2025</p><div><h3>WILO Participant</h3><p class="organization">Amii</p></div><p>Translated startup needs into ML problem definitions, prototype plans, research briefs, and evaluation recommendations.</p></article>
+          <article><p class="date">Mar—Aug 2022</p><div><h3>Software Engineer Intern</h3><p class="organization">Optimizely</p></div><p>Authentication workflows, AngularJS-to-React migration, testing, debugging, and QA collaboration.</p></article>
+          <article><p class="date">Jul—Oct 2021</p><div><h3>Tech Intern</h3><p class="organization">Thrive EdTech</p></div><p>React and REST API features, plus OCR prototypes for textbook-content digitization.</p></article>
+        </div>
+        <a class="button secondary experience-resume" href="Faizah_Binte_Naquib_Resume.pdf" target="_blank">View full résumé</a>
+      </div>
+    </section>
+
+    <section class="section container" id="research" aria-labelledby="research-title">
+      <div class="section-intro"><div><p class="overline">Research and education</p><h2 id="research-title">How I got here.</h2></div><p>I started in finger-vein biometrics, then spent my MSc figuring out how to improve OCR when the OCR engine itself is closed.</p></div>
+      <div class="education-grid">
+        <article><span>2025</span><h3>MSc, Computing Science</h3><p>University of Alberta</p><p>Supervisor: Prof. Nilanjan Ray. Thesis on black-box OCR approximation and full-document image preprocessing.</p></article>
+        <article><span>2021</span><h3>BSc, Computer Science &amp; Engineering</h3><p>Ahsanullah University of Science and Technology</p><p>Research in finger-vein extraction and biometric classification.</p></article>
+      </div>
+      <div class="publications">
+        <h3>Publications and recognition</h3>
+        <a href="https://doi.org/10.1109/ICCIT51783.2020.9392736" target="_blank" rel="noreferrer"><span>2020 · ICCIT</span><strong>Modified Maximum Curvature Method (MMCM) and Logistic Regression</strong><small>Third Best Paper · View publication ↗</small></a>
+        <a href="https://doi.org/10.1109/ICAICT51780.2020.9333515" target="_blank" rel="noreferrer"><span>2020 · ICAICT</span><strong>Comparative Study of Deep Learning Based Finger Vein Biometric Authentication Systems</strong><small>View publication ↗</small></a>
+        <p class="recognition">Additional recognition: Top-3 finish, BRACathon 3.0 (2019)</p>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="skills" aria-labelledby="skills-title">
+      <div class="container skills-layout">
+        <div><p class="overline">Skills</p><h2 id="skills-title">What I reach for.</h2><p>Not a proficiency meter—just the tools that keep showing up in my work.</p></div>
+        <div class="skill-groups">
+          <div><h3>ML and computer vision</h3><p>Python, PyTorch, OpenCV, YOLO, CenterPoint, OCR, image preprocessing, evaluation, error analysis</p></div>
+          <div><h3>Autonomy and simulation</h3><p>ROS 2, Autoware, camera–LiDAR workflows, point clouds, Lanelet2, Unity, AWSIM</p></div>
+          <div><h3>Deployment and systems</h3><p>ONNX, RKNN, profiling, quantization, Linux, Git, Docker, edge-inference workflows</p></div>
+          <div><h3>Software engineering</h3><p>C++, JavaScript, TypeScript, React, REST APIs, SQL, testing, and debugging</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container demo-section" id="demo" aria-labelledby="demo-title">
+      <div class="section-intro compact-intro"><div><p class="overline">Interactive project</p><h2 id="demo-title">Try the OCR pipeline.</h2></div><p>Draw a short word. Clear block letters give it a fighting chance.</p></div>
+      <details class="demo-disclosure">
+        <summary>Open the live demo <span>+</span></summary>
+        <div class="demo-workspace">
+          <div class="canvas-panel">
+            <div class="panel-head"><span>Input canvas</span><span>Use clear block letters</span></div>
+            <div class="canvas-wrap"><canvas id="drawingCanvas" aria-label="Drawing canvas for OCR demo"></canvas><p id="canvasOverlay">Write here</p></div>
+            <div class="canvas-actions"><button class="button secondary" id="clearCanvas" type="button">Clear</button><button class="button primary" id="processOCR" type="button">Run OCR</button></div>
+          </div>
+          <div class="result-panel">
+            <div class="result-block"><div class="panel-head"><span>OCR output</span><span class="result-status status-ready" id="ocrStatus">Ready</span></div><div class="result-content" id="ocrResult" aria-live="polite">Extracted text will appear here.</div></div>
+            <div class="result-block"><div class="panel-head"><span>Optional refinement</span><span class="result-status status-ready" id="llmStatus">Ready</span></div><div class="result-content" id="llmResult" aria-live="polite">Refinement status will appear here.</div></div>
+          </div>
+        </div>
+        <p class="demo-note"><strong>Service transparency:</strong> status labels show whether hosted PaddleOCR or browser-based Tesseract ran, and whether refinement came from the Llama endpoint or a local formatting fallback.</p>
+      </details>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <div><p class="overline">Contact</p><h2 id="contact-title">Want to compare notes?</h2><p>I’m always happy to talk about applied ML, perception, OCR, strange datasets, or a bug that turned out to be a coordinate frame.</p></div>
+        <div class="contact-actions"><a class="button primary" href="mailto:faizahbintenaquib@gmail.com">Email me</a><a href="Faizah_Binte_Naquib_Resume.pdf" download>Download résumé</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>© <span id="currentYear"></span> Faizah Binte Naquib</p><div><a href="https://github.com/Faizah-Binte-Naquib" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/faizah-binte-naquib-a07932174/" target="_blank" rel="noreferrer">LinkedIn</a><a href="#top">Back to top ↑</a></div></div></footer>
 </body>
 </html>

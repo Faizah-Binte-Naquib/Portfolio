@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Résumé of Faizah Binte Naquib, Applied Machine Learning Scientist.">
+  <title>Faizah Binte Naquib — Résumé</title>
+  <style>
+    :root { --ink:#17202a; --muted:#56616b; --line:#cfd5da; --accent:#245f55; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #eef0f2; color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-size: 10.5pt; line-height: 1.42; }
+    a { color: inherit; text-decoration: none; }
+    .toolbar { position: sticky; top: 0; z-index: 2; min-height: 58px; padding: 10px 20px; display: flex; justify-content: center; gap: 10px; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+    .toolbar a, .toolbar button { padding: 8px 12px; border: 1px solid var(--ink); border-radius: 4px; background: white; color: var(--ink); font: inherit; cursor: pointer; }
+    .toolbar button { background: var(--accent); border-color: var(--accent); color: white; }
+    .page { width: 8.5in; min-height: 11in; margin: 24px auto; padding: .55in .6in; background: white; box-shadow: 0 6px 30px rgba(0,0,0,.09); }
+    header { padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+    h1 { margin: 0; font-size: 25pt; letter-spacing: -.6px; }
+    .headline { margin: 2px 0 7px; color: var(--accent); font-size: 11.5pt; font-weight: 700; }
+    .contact { display: flex; flex-wrap: wrap; gap: 5px 14px; color: var(--muted); font-size: 8.5pt; }
+    .contact a { text-decoration: underline; text-underline-offset: 2px; }
+    section { margin-top: 15px; }
+    h2 { margin: 0 0 7px; padding-bottom: 3px; border-bottom: 1px solid var(--line); font-size: 9pt; letter-spacing: 1.2px; text-transform: uppercase; }
+    .summary { margin: 0; color: #303941; }
+    .entry { display: grid; grid-template-columns: 1fr auto; gap: 0 16px; margin-top: 10px; break-inside: avoid; }
+    .entry:first-of-type { margin-top: 0; }
+    .entry h3 { margin: 0; font-size: 10.5pt; }
+    .entry .org { margin: 1px 0 0; color: var(--accent); font-size: 9pt; font-weight: 700; }
+    .entry .date { margin: 0; color: var(--muted); font-size: 8.5pt; white-space: nowrap; text-align: right; }
+    .entry ul { grid-column: 1 / -1; margin: 5px 0 0 17px; padding: 0; }
+    li { margin-bottom: 2px; padding-left: 2px; }
+    .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .skills { display: grid; grid-template-columns: 115px 1fr; gap: 5px 10px; }
+    .skills strong { font-size: 8.7pt; }
+    .skills span { color: #303941; font-size: 8.7pt; }
+    .publication { margin: 0 0 6px; font-size: 8.7pt; }
+    .publication a { text-decoration: underline; }
+    .footnote { margin: 13px 0 0; color: var(--muted); font-size: 7.5pt; text-align: right; }
+    @media (max-width: 850px) { .page { width: 100%; min-height: 0; margin: 0; padding: 28px 22px; box-shadow: none; } .two-column { grid-template-columns: 1fr; } }
+    @media print { @page { size: letter; margin: 0; } body { background: white; } .toolbar { display: none; } .page { width: 8.5in; min-height: 11in; margin: 0; padding: .45in .55in; box-shadow: none; } a { text-decoration: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="toolbar" aria-label="Résumé actions">
+    <a href="index.html">← Portfolio</a>
+    <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    <a href="Faizah_Binte_Naquib_Resume.pdf" download>Download PDF</a>
+  </div>
+
+  <main class="page">
+    <header>
+      <h1>Faizah Binte Naquib</h1>
+      <p class="headline">Applied Machine Learning Scientist</p>
+      <div class="contact">
+        <span>Edmonton, Alberta, Canada</span>
+        <a href="mailto:faizahbintenaquib@gmail.com">faizahbintenaquib@gmail.com</a>
+        <a href="https://github.com/Faizah-Binte-Naquib">github.com/Faizah-Binte-Naquib</a>
+        <a href="https://www.linkedin.com/in/faizah-binte-naquib-a07932174/">LinkedIn</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">Machine Learning Scientist working across computer vision, OCR, autonomous-system perception, simulation, and edge inference. Current work focuses on ROS 2/Autoware evaluation and integration; MSc research focused on black-box OCR and full-document image preprocessing. Earlier software work includes React, REST APIs, testing, and debugging.</p>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <strong>ML / Vision</strong><span>Python, PyTorch, OpenCV, YOLO, CenterPoint, OCR, image preprocessing, evaluation and error analysis</span>
+        <strong>Autonomy</strong><span>ROS 2, Autoware, camera–LiDAR workflows, point clouds, Lanelet2, Unity, AWSIM</span>
+        <strong>Deployment</strong><span>ONNX, RKNN, model conversion, profiling, quantization, Linux, Git, Docker</span>
+        <strong>Software</strong><span>C++, JavaScript, TypeScript, React, REST APIs, SQL, testing and debugging</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <article class="entry">
+        <div><h3>Machine Learning Scientist</h3><p class="org">Correct-AI · Edmonton, Alberta</p></div><p class="date">Aug 2025—Present</p>
+        <ul>
+          <li>Develop ROS 2 and Autoware perception and simulation workflows using camera–LiDAR inputs and Unity/AWSIM digital twins.</li>
+          <li>Build repeatable perception evaluations across KITTI, Waymo, and T4 data; diagnose timing, coordinate-frame, class-mapping, and ground-truth mismatches.</li>
+          <li>Train and optimize detection models for edge inference using ONNX/RKNN conversion and performance profiling.</li>
+          <li>Develop terrain-aware traversability mapping and vehicle-feasibility checks for off-road planning; work is currently in simulator testing.</li>
+        </ul>
+      </article>
+      <article class="entry">
+        <div><h3>Machine Learning Research Assistant</h3><p class="org">Synapsis Medical Technologies</p></div><p class="date">May—Aug 2025</p>
+        <ul><li>Designed OCR and document-understanding workflows for noisy clinical material, including parsing, structured information extraction, retrieval, and prompt engineering.</li></ul>
+      </article>
+      <article class="entry">
+        <div><h3>WILO Participant</h3><p class="org">Alberta Machine Intelligence Institute (Amii)</p></div><p class="date">May—Aug 2025</p>
+        <ul><li>Translated startup needs into ML problem definitions, prototype plans, research briefs, and evaluation recommendations.</li></ul>
+      </article>
+      <article class="entry">
+        <div><h3>Software Engineer Intern</h3><p class="org">Optimizely</p></div><p class="date">Mar—Aug 2022</p>
+        <ul><li>Implemented authentication workflows, contributed to an AngularJS-to-React migration, and collaborated with QA on testing and debugging.</li></ul>
+      </article>
+      <article class="entry">
+        <div><h3>Tech Intern</h3><p class="org">Thrive EdTech</p></div><p class="date">Jul—Oct 2021</p>
+        <ul><li>Built React and REST API features and prototyped OCR-based digitization of textbook content.</li></ul>
+      </article>
+    </section>
+
+    <section>
+      <h2>Selected Research and Projects</h2>
+      <article class="entry">
+        <div><h3>Black-box OCR approximation for full-document image preprocessing</h3><p class="org">MSc thesis · University of Alberta</p></div><p class="date">2023—2025</p>
+        <ul>
+          <li>Trained a TrOCR-based differentiable approximation of Tesseract to guide a modified U-Net image preprocessor without access to the OCR engine’s internals.</li>
+          <li>Reduced document word error rate by 58.5% on POS and 23.5% on SROIE relative to unprocessed inputs; reduced OCR calls per training-data pass by 95.1–98.1%.</li>
+        </ul>
+      </article>
+      <article class="entry">
+        <div><h3>DuckMind desktop companion</h3><p class="org">Independent project</p></div><p class="date">Python · Local AI</p>
+        <ul><li>Built a PySide6 desktop companion with persistent state, observer-based event logging, and optional retrieval and dialogue using ChromaDB, sentence-transformers, and Ollama.</li></ul>
+      </article>
+    </section>
+
+    <div class="two-column">
+      <section>
+        <h2>Education</h2>
+        <article class="entry"><div><h3>MSc, Computing Science</h3><p class="org">University of Alberta</p></div><p class="date">2025</p></article>
+        <article class="entry"><div><h3>BSc, Computer Science &amp; Engineering</h3><p class="org">Ahsanullah University of Science and Technology</p></div><p class="date">2021</p></article>
+      </section>
+      <section>
+        <h2>Recognition</h2>
+        <p class="publication"><strong>Third Best Paper</strong>, ICCIT 2020</p>
+        <p class="publication"><strong>Top-3 finish</strong>, BRACathon 3.0, 2019</p>
+      </section>
+    </div>
+
+    <section>
+      <h2>Publications</h2>
+      <p class="publication">F. B. Naquib et al. “Modified Maximum Curvature Method (MMCM) and Logistic Regression: A Hybrid Architecture for Finger Vein Biometric Recognition System.” ICCIT, 2020. <a href="https://doi.org/10.1109/ICCIT51783.2020.9392736">DOI</a></p>
+      <p class="publication">F. Elahee et al. “Comparative Study of Deep Learning Based Finger Vein Biometric Authentication Systems.” ICAICT, 2020. <a href="https://doi.org/10.1109/ICAICT51780.2020.9333515">DOI</a></p>
+    </section>
+    <p class="footnote">Last updated October 2026 · Full project context available in the portfolio.</p>
+  </main>
+</body>
+</html>
